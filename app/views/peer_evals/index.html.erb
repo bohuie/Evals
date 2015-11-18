@@ -1,8 +1,7 @@
 <% @peer_evals.each do |pe| %>
   <p><%= pe.milestone %> 
   <p><%= pe.evaluatee %> 
-  <p><%= pe.goals %> 
-  <%= pe.quality %> 
-  <%= pe.effort %> 
-  <%= pe.considerate %> 
+  <p><%= pe.goals %> <%= pe.quality %> <%= pe.effort %> <%= pe.considerate %> <%= pe.knowledge%> <%= pe.sharing%> 
+  <p><%= pe.strength%> 
+  <p><%= pe.weakness%> 
 <% end %>
