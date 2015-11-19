@@ -4,6 +4,7 @@
   <p><%= pe.goals %> <%= pe.quality %> <%= pe.effort %> <%= pe.considerate %> <%= pe.knowledge%> <%= pe.sharing%> 
   <p><%= pe.strength%> 
   <p><%= pe.weakness%> 
+  <%= link_to 'See on separate page', peer_eval_path(pe) %>
 <% end %>
 
 <p><%= link_to 'Create New Peer Evaluation', "/peer_evals/new" %>
