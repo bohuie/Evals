@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
   get '/students' => 'students#index'
+
   get '/peer_evals' => 'peer_evals#index'
+
+  get '/peer_evals/new' => 'peer_evals#new'
+  post 'peer_evals' => 'peer_evals#create'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
