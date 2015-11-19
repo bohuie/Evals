@@ -4,7 +4,12 @@ Rails.application.routes.draw do
   get '/peer_evals' => 'peer_evals#index'
 
   get '/peer_evals/new' => 'peer_evals#new'
-  post 'peer_evals' => 'peer_evals#create'
+  post '/peer_evals' => 'peer_evals#create'
+
+  get '/peer_evals/:id' => 'peer_evals#show', as: :peer_eval
+
+  get '/peer_evals/:id/edit' => 'peer_evals#edit', as: :edit_peer_eval
+  patch '/peer_evals/:id' => 'peer_evals#update'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

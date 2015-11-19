@@ -1,0 +1,23 @@
+<%= form_for (@peer_eval) do |pe| %>
+  <p><%= pe.label :milestone %>:   
+     <%= pe.select :milestone, [['Requirements', 'Requirements'], ['Design', 'Design'], ['Final', 'Final']], :include_blank => true %>
+  <p><%= pe.label :evaluatee %>:   <%= pe.text_field :evaluatee %> 
+
+  <p><%= pe.label :contribution_to_group_goals %>:       
+     <%= pe.select :goals, [['5 (bonus mark)', 5], ['4 (very good)', 4], ['3 (good)', 3], ['2 (poor)', 2], ['1 (very poor)', 1]], :include_blank => true %>  
+  <p><%= pe.label :quality_of_individual_contributions %>:    
+     <%= pe.select :quality, [['5 (bonus mark)', 5], ['4 (very good)', 4], ['3 (good)', 3], ['2 (poor)', 2], ['1 (very poor)', 1]], :include_blank => true %>  
+  <p><%= pe.label :effort_and_participation %>:     
+     <%= pe.select :effort, [['4 (very good)', 4], ['3 (good)', 3], ['2 (poor)', 2], ['1 (very poor)', 1]], :include_blank => true %>  
+  <p><%= pe.label :consideration_of_others %>:
+     <%= pe.select :considerate, [['4 (very good)', 4], ['3 (good)', 3], ['2 (poor)', 2], ['1 (very poor)', 1]], :include_blank => true %>  
+  <p><%= pe.label :contribution_of_knowledge%>:   
+     <%= pe.select :knowledge, [['4 (very good)', 4], ['3 (good)', 3], ['2 (poor)', 2], ['1 (very poor)', 1]], :include_blank => true %>  
+  <p><%= pe.label :working_and_sharing_with_others %>:     
+     <%= pe.select :sharing, [['5 (bonus mark)', 5], ['4 (very good)', 4], ['3 (good)', 3], ['2 (poor)', 2], ['1 (very poor)', 1]], :include_blank => true %>  
+
+  <p><%= pe.label :strengths %>:  <%= pe.text_area  :strength %>  
+  <p><%= pe.label :areas_of_improvement %>: <%= pe.text_area  :weakness %>  
+
+<p><%= pe.submit "Submit" %>
+<% end %>

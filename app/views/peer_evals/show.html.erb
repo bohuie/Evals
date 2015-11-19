@@ -1,0 +1,13 @@
+<h2>Peer Evaluation for <%= @peer_eval.evaluatee %></h2>
+
+<p><b>Milestone:</b> <%= @peer_eval.milestone %></b>
+<p><b>Contribution to Group Goals:</b> <%= @peer_eval.goals%></b>
+<p><b>Quality of Individual Contributions:</b> <%= @peer_eval.quality%></b>
+<p><b>Effort and Participation:</b> <%= @peer_eval.effort%></b>
+<p><b>Considerate of Others:</b> <%= @peer_eval.considerate%></b>
+<p><b>Contribution of Knowledge:</b> <%= @peer_eval.knowledge%></b>
+<p><b>Working and Sharing with Others:</b> <%= @peer_eval.sharing%></b>
+<p><b>Strengths:</b> <%= @peer_eval.strength%></b>
+<p><b>Areas of Improvement:</b> <%= @peer_eval.weakness%></b>
+
+<p><%= link_to "Edit", edit_peer_eval_path(@peer_eval) %>
