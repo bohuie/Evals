@@ -18,6 +18,7 @@ class PeerEvalsController < ApplicationController
 
   def show
     @peer_eval = PeerEval.find(params[:id])
+    @student = @peer_eval.student_id
   end
 
   def edit
@@ -35,7 +36,7 @@ class PeerEvalsController < ApplicationController
 
   private
   def peer_eval_params
-    params.require(:peer_eval).permit(:milestone, :evaluatee, :goals, :quality, :effort, :considerate, :knowledge, :sharing, :strength, :weakness)
+    params.require(:peer_eval).permit(:milestone, :student_id, :goals, :quality, :effort, :considerate, :knowledge, :sharing, :strength, :weakness)
   end
 
 end

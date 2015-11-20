@@ -3,7 +3,7 @@
   <%= pe.select :milestone, [['Requirements', 'Requirements'], ['Design', 'Design'], ['Final', 'Final']], {:prompt => 'Which milestone is this for?'} %>
 
   <p><%= pe.label :student_under_evaluation %>:   
-  <%= pe.collection_select :evaluatee, Student.all, :id, :fullname, {:prompt => 'Who are you evaluating?'} %>
+  <%= pe.collection_select :student_id, Student.all, :id, :fullname, {:prompt => 'Who are you evaluating?'} %>
 
   <p><%= pe.label :contribution_to_group_goals %>:       
   <%= pe.select :goals, [['5 (bonus mark)', 5], ['4 (very good)', 4], ['3 (good)', 3], ['2 (poor)', 2], ['1 (very poor)', 1]], {:prompt => 'Assign a score...'} %>  
