@@ -18,7 +18,7 @@ class PeerEvalsController < ApplicationController
 
   def show
     @peer_eval = PeerEval.find(params[:id])
-    @student = @peer_eval.student_id
+    @student = @peer_eval.user_id
   end
 
   def edit

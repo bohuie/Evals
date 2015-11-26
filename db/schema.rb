@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151125203011) do
+ActiveRecord::Schema.define(version: 20151126224222) do
 
   create_table "peer_evals", force: :cascade do |t|
     t.string   "milestone"
@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 20151125203011) do
     t.string   "weakness"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.integer  "student_id"
+    t.integer  "user_id"
   end
 
   create_table "students", force: :cascade do |t|
