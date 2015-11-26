@@ -5,7 +5,14 @@ Rails.application.routes.draw do
 
   get '/users' => 'users#index'
 
+  get '/users/:id' => 'users#show', as: :user
+
+  get '/users/:id/edit' => 'users#edit', as: :edit_user
+  patch '/users/:id' => 'users#update'
+
+
   get '/students' => 'students#index'
+
 
   get '/peer_evals' => 'peer_evals#index'
 

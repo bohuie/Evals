@@ -1,3 +1,5 @@
 <% @users.each do |u| %>
-  <p><%= u.first_name %> <%= u.last_name %>
+  <p><%= u.email %> 
+  <p><%= u.fullname %> 
+<p><%= link_to "Edit", edit_user_path(u) %>
 <% end %>
