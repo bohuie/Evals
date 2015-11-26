@@ -3,6 +3,8 @@ Rails.application.routes.draw do
 
   devise_for :users
 
+  get '/users' => 'users#index'
+
   get '/students' => 'students#index'
 
   get '/peer_evals' => 'peer_evals#index'
