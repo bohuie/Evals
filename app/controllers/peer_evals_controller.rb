@@ -9,6 +9,7 @@ class PeerEvalsController < ApplicationController
 
   def create
     @peer_eval = PeerEval.new(peer_eval_params)
+    @peer_eval.creator_id = current_user.id
     if @peer_eval.save
       redirect_to '/peer_evals'
     else
