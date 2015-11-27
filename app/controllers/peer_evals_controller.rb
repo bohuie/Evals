@@ -1,6 +1,6 @@
 class PeerEvalsController < ApplicationController
   def index
-    @peer_evals = PeerEval.all
+    @peer_evals = PeerEval.where(:creator_id => current_user.id)
   end
 
   def new
