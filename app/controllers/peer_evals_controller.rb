@@ -1,6 +1,14 @@
 class PeerEvalsController < ApplicationController
+  before_filter :load_peer_eval, only: [:show, :edit, :update]
+
   def index
-    @peer_evals = PeerEval.where(:creator_id => current_user.id)
+    if current_user.admin 
+      @peer_evals = PeerEval.all
+      @your_evals = []
+    else
+      @peer_evals = PeerEval.where(:creator_id => current_user.id)
+      @your_evals = PeerEval.where(:user_id => current_user.id)
+    end
   end
 
   def new
@@ -18,16 +26,13 @@ class PeerEvalsController < ApplicationController
   end
 
   def show
-    @peer_eval = PeerEval.find(params[:id])
     @student = @peer_eval.user_id
   end
 
   def edit
-    @peer_eval = PeerEval.find(params[:id])
   end
 
   def update
-    @peer_eval = PeerEval.find(params[:id])
     if @peer_eval.update_attributes(peer_eval_params)
       redirect_to(:action => 'show', :id => @peer_eval.id)
     else
@@ -37,7 +42,14 @@ class PeerEvalsController < ApplicationController
 
   private
   def peer_eval_params
-    params.require(:peer_eval).permit(:milestone, :student_id, :goals, :quality, :effort, :considerate, :knowledge, :sharing, :strength, :weakness)
+    params.require(:peer_eval).permit(:milestone, :user_id, :goals, :quality, :effort, :considerate, :knowledge, :sharing, :strength, :weakness)
   end
 
+  def load_peer_eval
+    if current_user.admin 
+      @peer_eval = PeerEval.find(params[:id])
+    else
+      @peer_eval = PeerEval.where(:creator_id => current_user.id).find(params[:id])
+    end
+  end
 end
