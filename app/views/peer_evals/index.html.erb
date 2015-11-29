@@ -2,7 +2,7 @@
 
 <% @peer_evals.each do |pe| %>
   <p><b>Milestone</b>: <%= pe.milestone %> 
-  <p><b>Student Under Evaluation</b>: <%= pe.user_id %> 
+  <p><b>Student Under Evaluation</b>: <%= pe.user.fullname %> 
   <p><b>Scores</b>: 
   <ul>
     <li>Contribution to Group Goals: <%= pe.goals %> / 4
