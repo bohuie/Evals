@@ -19,6 +19,7 @@
     <%= link_to "Sign in", new_user_session_path %>
   <% end %>
 
+      <%= render "shared/flashes" %> 
       <%= yield %> 
   </div>
   </div>

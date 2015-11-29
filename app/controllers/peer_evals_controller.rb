@@ -21,6 +21,7 @@ class PeerEvalsController < ApplicationController
     if @peer_eval.save
       redirect_to '/peer_evals'
     else
+      flash.now[:error] = @peer_eval.errors.full_messages.to_sentence
       render 'new'
     end
   end
@@ -36,6 +37,7 @@ class PeerEvalsController < ApplicationController
     if @peer_eval.update_attributes(peer_eval_params)
       redirect_to(:action => 'show', :id => @peer_eval.id)
     else
+      flash.now[:error] = @peer_eval.errors.full_messages.to_sentence
       render 'edit'
     end
   end
