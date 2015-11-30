@@ -14,10 +14,8 @@
   </ul>
   <p><b>Strengths</b>: <%= pe.strength%> 
   <p><b>Areas of Improvement</b>: <%= pe.weakness%> 
-  <%= link_to 'Edit Evaluation', edit_peer_eval_path(pe) %>
+  <p><%= link_to 'Edit Evaluation', edit_peer_eval_path(pe), class: 'btn btn-primary' %>
 <% end %>
-
-<p><%= link_to 'Create New Peer Evaluation', "/peer_evals/new" %>
 
 <h1> Peer Evals For You</h1>
 
