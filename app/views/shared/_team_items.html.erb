@@ -1,0 +1,16 @@
+<%= form_for (@team) do |t| %>
+  <p><%= t.label :team_name %>:   
+  <%= t.select :name, [['Reading App', 'Reading App'], 
+                       ['WTFast Realtime Stats', 'WTFast Realtime Stats'], 
+                       ['Fountain Front-End', 'Fountain Front-End'],
+                       ['Event Notification App', 'Event Notification App'], 
+                       ['CRM System', 'CRM System'], 
+                       ['ESD Simulation', 'ESD Simulation'], 
+                       ['Carbon Footprint Calculator', 'Carbon Footprint Calculator'], 
+                       ['BYC App', 'BYC App'], 
+                       ['Inventory Management', 'Inventory Management']], 
+  {:prompt => 'What is the name of your team?'} %>
+
+<p><%= t.submit "Submit", class: 'btn btn-primary'%>
+<% end %>
+

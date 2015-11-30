@@ -1,0 +1,6 @@
+<% @teams.each do |t| %>
+  <p><%= t.name %> 
+<p><%= link_to "Edit", edit_team_path(t), class: 'btn btn-primary' %>
+<% end %>
+
+<p><%= link_to "Create a New Team", teams_new_path, class: 'btn btn-primary' %>

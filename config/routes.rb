@@ -35,6 +35,16 @@ Rails.application.routes.draw do
   get '/group_evals/:id/edit' => 'group_evals#edit', as: :edit_group_eval
   patch '/group_evals/:id' => 'group_evals#update'
 
+  get '/teams' => 'teams#index'
+
+  get '/teams/new' => 'teams#new'
+  post '/teams' => 'teams#create'
+
+  get '/teams/:id' => 'teams#show', as: :team
+
+  get '/teams/:id/edit' => 'teams#edit', as: :edit_team
+  patch '/teams/:id' => 'teams#update'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
