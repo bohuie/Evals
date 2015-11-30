@@ -1,5 +1,16 @@
-<h1> Peer Evals Created By You</h1>
+<table>
+<tr>
+<td>
+<h1> Peer Evals You Created</h1> 
+</td>
 
+<td>
+<h1> Peer Evals For You</h1>
+</td>
+</tr>
+
+<tr>
+<td valign=top>
 <% @peer_evals.each do |pe| %>
   <p><b>Milestone</b>: <%= pe.milestone %> 
   <p><b>Student Under Evaluation</b>: <%= pe.user.fullname %> 
@@ -16,9 +27,9 @@
   <p><b>Areas of Improvement</b>: <%= pe.weakness%> 
   <p><%= link_to 'Edit Evaluation', edit_peer_eval_path(pe), class: 'btn btn-primary' %>
 <% end %>
+</td>
 
-<h1> Peer Evals For You</h1>
-
+<td valign=top>
 <% @your_evals.each do |ye| %>
   <p><b>Milestone</b>: <%= ye.milestone %> 
   <p><b>Scores</b>: 
@@ -34,4 +45,6 @@
   <p><b>Areas of Improvement</b>: <%= ye.weakness%> 
 <% end %>
 
-
+</td>
+</tr>
+</table>
