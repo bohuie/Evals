@@ -5,6 +5,7 @@ gem 'rails', '4.2.5'
 gem 'devise', '~> 3.4.0'
 gem 'rails_admin'
 
+ruby '2.2.1'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
