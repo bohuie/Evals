@@ -7,6 +7,8 @@ gem 'rails_admin'
 
 ruby '2.2.1'
 
+gem 'spring'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
