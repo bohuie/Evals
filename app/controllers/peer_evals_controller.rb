@@ -1,4 +1,5 @@
 class PeerEvalsController < ApplicationController
+  before_filter :authenticate_user!
   before_filter :load_peer_eval, only: [:show, :edit, :update]
 
   def index
