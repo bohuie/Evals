@@ -9,4 +9,5 @@
   <p><b>Strengths</b>: <%= ge.strength %> 
   <p><b>Areas of Improvement</b>: <%= ge.weakness %> 
   <p><b>Questions For Team</b>: <%= ge.questions%> 
+  <p><%= link_to 'Edit Evaluation', edit_group_eval_path(ge), class: 'btn btn-primary' %>
 <% end %>

@@ -1,4 +1,5 @@
 class GroupEvalsController < ApplicationController
+  before_filter :authenticate_user!
   before_filter :load_group_eval, only: [:show, :edit, :update]
 
   def index
@@ -17,6 +18,21 @@ class GroupEvalsController < ApplicationController
     else
       flash.now[:error] = @group_eval.errors.full_messages.to_sentence
       render 'new'
+    end
+  end
+
+  def show
+  end
+
+  def edit
+  end
+
+  def update
+    if @group_eval.update_attributes(group_eval_params)
+      redirect_to(:action => 'show', :id => @group_eval.id)
+    else
+      flash.now[:error] = @group_eval.errors.full_messages.to_sentence
+      render 'edit'
     end
   end
 

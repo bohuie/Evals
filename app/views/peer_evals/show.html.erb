@@ -1,7 +1,6 @@
 <h2>Peer Evaluation for <%= @peer_eval.user_id %></h2>
 
 <p><b>Milestone:</b> <%= @peer_eval.milestone %></b>
-<p><b>Evaluated By:</b> <%= @peer_eval.creator_id %></b>
 <p><b>Student Under Evaluation:</b> <%= @peer_eval.user_id %></b>
 <p><b>Contribution to Group Goals:</b> <%= @peer_eval.goals %></b>
 <p><b>Quality of Individual Contributions:</b> <%= @peer_eval.quality %></b>
@@ -12,5 +11,4 @@
 <p><b>Strengths:</b> <%= @peer_eval.strength %></b>
 <p><b>Areas of Improvement:</b> <%= @peer_eval.weakness %></b>
 
-<p><%= link_to "Edit", edit_peer_eval_path(@peer_eval) %>
-<p><%= link_to "Back to Your Evals", peer_evals_path %>
+<p><%= link_to "Edit", edit_peer_eval_path(@peer_eval), class: 'btn btn-primary' %>
