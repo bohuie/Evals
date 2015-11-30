@@ -1,6 +1,5 @@
 source 'https://rubygems.org'
 
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5'
 gem 'devise', '~> 3.4.0'
@@ -39,6 +38,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 group :production do
   gem 'pg'
+  gem 'rails_12factor'
 end
 
 group :development, :test do
