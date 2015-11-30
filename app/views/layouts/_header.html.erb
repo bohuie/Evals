@@ -2,6 +2,8 @@
   <li role="presentation"> <%= link_to "Home", welcome_index_path %></li>
   <li role="presentation"> <%= link_to "Create New Peer Eval", peer_evals_new_path %></li>
   <li role="presentation"> <%= link_to "My Peer Evals", peer_evals_path %></li>
+  <li role="presentation"> <%= link_to "Create New Group Eval", group_evals_new_path %></li>
+  <li role="presentation"> <%= link_to "My Group Evals", group_evals_path %></li>
   <li role="presentation" class="pull-right">
     <% if user_signed_in? %>
       Signed in as <%= current_user.email %>. Not you?

@@ -24,6 +24,11 @@ Rails.application.routes.draw do
   get '/peer_evals/:id/edit' => 'peer_evals#edit', as: :edit_peer_eval
   patch '/peer_evals/:id' => 'peer_evals#update'
 
+  get '/group_evals' => 'group_evals#index'
+
+  get '/group_evals/new' => 'group_evals#new'
+  post '/group_evals' => 'group_evals#create'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

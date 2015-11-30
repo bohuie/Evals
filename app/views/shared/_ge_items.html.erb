@@ -1,0 +1,20 @@
+<%= form_for (@group_eval) do |ge| %>
+  <p><%= ge.label :milestone %>:   
+  <%= ge.select :milestone, [['Requirements', 'Requirements'], ['Design', 'Design'], ['Final', 'Final']], {:prompt => 'Which milestone is this for?'} %>
+
+  <p><%= ge.label :team_under_evaluation %>: <%= ge.text_field :team %>
+
+  <p><%= ge.label :presentation %>:       
+  <%= ge.select :presentation, [['5 (very good)', 5], ['4 (good)', 4], ['3 (satisfactory)', 3], ['2 (poor)', 2], ['1 (very poor)', 1]], {:prompt => 'Assign a score...'} %>  
+  <p><%= ge.label :ability_to_answer_questions %>:       
+  <%= ge.select :answering, [['5 (very good)', 5], ['4 (good)', 4], ['3 (satisfactory)', 3], ['2 (poor)', 2], ['1 (very poor)', 1]], {:prompt => 'Assign a score...'} %>  
+  <p><%= ge.label :quality_of_contributions %>:       
+  <%= ge.select :contribution , [['5 (very good)', 5], ['4 (good)', 4], ['3 (satisfactory)', 3], ['2 (poor)', 2], ['1 (very poor)', 1]], {:prompt => 'Assign a score...'} %>  
+
+  <p><%= ge.label :questions_for_the_team %>:  <%= ge.text_area  :questions, size: "60x10" %>  
+
+  <p><%= ge.label :strengths %>:  <%= ge.text_area  :strength, size: "60x10" %>  
+  <p><%= ge.label :areas_of_improvement %>: <%= ge.text_area  :weakness, size: "60x10" %>  
+
+<p><%= ge.submit "Submit", class: 'btn btn-primary'%>
+<% end %>

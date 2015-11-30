@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :peer_evals
+  has_many :group_evals
 
   def fullname
     "#{first_name} #{last_name}"
