@@ -1,6 +1,8 @@
 <% @users.each do |u| %>
   <p><%= u.email %> 
   <p><%= u.fullname %> 
-  <p><%= u.team.name %> 
-<p><%= link_to "Edit", edit_user_path(u) %>
+  <% if u.team %>
+    <p><%= u.team.name %> 
+  <% end %>
+<p><%= link_to "Edit", edit_user_path(u), class: 'btn btn-primary' %>
 <% end %>

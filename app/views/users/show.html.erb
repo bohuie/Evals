@@ -3,6 +3,10 @@
 <p><b>First name:</b> <%= @user.first_name %> 
 <p><b>Last name:</b> <%= @user.last_name %> 
 <p><b>Email:</b> <%= @user.email %> 
+<% if @user.team %>
+  <p><b>Team:</b> <%= @user.team.name %> 
+<% end %>
 
-<p><%= link_to "Edit", edit_user_path(@user) %>
+<p><%= link_to "Edit", edit_user_path(@user), class: 'btn btn-primary' %>
+<p><%= link_to "Back to List of Users", users_path, class: 'btn btn-primary' %>
 
