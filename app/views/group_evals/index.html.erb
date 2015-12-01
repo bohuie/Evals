@@ -2,7 +2,7 @@
 
 <% @group_evals.each do |ge| %>
   <p><b>Milestone</b>: <%= ge.milestone %>
-  <p><b>Team Under Evaluation</b>: <%= ge.team %> 
+  <p><b>Team Under Evaluation</b>: <%= ge.team.name %> 
   <p><b>Presentation</b>: <%= ge.presentation %> 
   <p><b>Ability to Answer Questions</b>: <%= ge.answering %> 
   <p><b>Quality of Contributions</b>: <%= ge.contribution %> 

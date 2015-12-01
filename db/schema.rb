@@ -11,10 +11,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151130212723) do
+ActiveRecord::Schema.define(version: 20151201051454) do
 
   create_table "group_evals", force: :cascade do |t|
-    t.string   "team"
     t.text     "questions"
     t.integer  "presentation"
     t.integer  "answering"
@@ -25,6 +24,7 @@ ActiveRecord::Schema.define(version: 20151130212723) do
     t.datetime "updated_at",   null: false
     t.integer  "creator_id"
     t.string   "milestone"
+    t.integer  "team_id"
   end
 
   create_table "peer_evals", force: :cascade do |t|

@@ -38,7 +38,7 @@ class GroupEvalsController < ApplicationController
 
   private
   def group_eval_params
-    params.require(:group_eval).permit(:milestone, :creator_id, :team, :presentation, :answering, :contribution, :questions, :strength, :weakness)
+    params.require(:group_eval).permit(:milestone, :creator_id, :team_id, :presentation, :answering, :contribution, :questions, :strength, :weakness)
   end
 
   def load_group_eval
