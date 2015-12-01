@@ -4,6 +4,9 @@
   <p><%= u.label :email %>: <%= @user.email %>
   <p><%= u.label :first_name %>: <%= u.text_field :first_name %>
   <p><%= u.label :last_name %>: <%= u.text_field :last_name %>
-<p><%= u.submit "Submit" %>
+  <p><%= u.label :team_name %>: 
+  <%= u.collection_select :team_id, Team.all, :id, :name, {:prompt => 'Which team do you belong to?'} %>
+
+<p><%= u.submit "Submit", class: 'btn btn-primary' %>
 <% end %>
 

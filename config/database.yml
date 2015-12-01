@@ -1,16 +1,16 @@
 default: &default
-  adapter: postgresql
+  adapter: sqlite3
   pool: 5
   timeout: 5000
 
 development:
   <<: *default
-  database: my_database_development
+  database: db/development.sqlite3
 
 test:
   <<: *default
-  database: my_database_test
+  database: db/test.sqlite3
 
 production:
   <<: *default
-  database: my_database_production
+  database: db/production.sqlite3

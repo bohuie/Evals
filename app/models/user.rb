@@ -6,7 +6,9 @@ class User < ActiveRecord::Base
 
   has_many :peer_evals
   has_many :group_evals
-  belongs_to :teams
+  belongs_to :team
+
+  validates :first_name, :last_name, presence: true
 
   def fullname
     "#{first_name} #{last_name}"
