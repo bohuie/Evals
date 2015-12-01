@@ -3,7 +3,11 @@ class GroupEvalsController < ApplicationController
   before_filter :load_group_eval, only: [:show, :edit, :update]
 
   def index
-    @group_evals = GroupEval.all
+    if current_user.admin 
+      @group_evals = GroupEval.all
+    else
+      @group_evals = GroupEval.where(:creator_id => current_user.id)
+    end
   end
 
   def new
