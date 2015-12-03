@@ -1,9 +1,22 @@
 <ul class="nav nav-tabs">
   <li role="presentation"> <%= link_to "Home", welcome_index_path %></li>
-  <li role="presentation"> <%= link_to "Create New Peer Eval", peer_evals_new_path %></li>
-  <li role="presentation"> <%= link_to "My Peer Evals", peer_evals_path %></li>
-  <li role="presentation"> <%= link_to "Create New Group Eval", group_evals_new_path %></li>
-  <li role="presentation"> <%= link_to "My Group Evals", group_evals_path %></li>
+
+  <% if user_signed_in? %>
+    <% if !current_user.client or current_user.admin %>
+      <li role="presentation"> <%= link_to "Create New Peer Eval", peer_evals_new_path %></li>
+      <li role="presentation"> <%= link_to "My Peer Evals", peer_evals_path %></li>
+      <li role="presentation"> <%= link_to "Create New Group Eval", group_evals_new_path %></li>
+      <li role="presentation"> <%= link_to "My Group Evals", group_evals_path %></li>
+    <% end %>
+  <% end %>
+
+  <% if user_signed_in? %>
+    <% if current_user.client or current_user.admin %>
+      <li role="presentation"> <%= link_to "Create Client Feedback", feedbacks_new_path %></li>
+      <li role="presentation"> <%= link_to "My Client Feedback", feedbacks_path %></li>
+    <% end %>
+  <% end %>
+
   <li role="presentation" class="pull-right">
     <% if user_signed_in? %>
       Signed in as <%= current_user.email %>. 
