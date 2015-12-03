@@ -5,8 +5,10 @@ class FeedbacksController < ApplicationController
   def index
     if current_user.admin
       @feedbacks = Feedback.all
+      @your_feedbacks = []
     else
       @feedbacks = Feedback.where(:creator_id => current_user.id)
+      @your_feedbacks = Feedback.where(:team_id => current_user.team_id)
     end
   end
 

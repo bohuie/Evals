@@ -13,9 +13,10 @@
   <% if user_signed_in? %>
     <% if current_user.client or current_user.admin %>
       <li role="presentation"> <%= link_to "Create Client Feedback", feedbacks_new_path %></li>
-      <li role="presentation"> <%= link_to "My Client Feedback", feedbacks_path %></li>
     <% end %>
   <% end %>
+
+  <li role="presentation"> <%= link_to "My Client Feedback", feedbacks_path %></li>
 
   <li role="presentation" class="pull-right">
     <% if user_signed_in? %>

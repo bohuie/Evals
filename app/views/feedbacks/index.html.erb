@@ -1,3 +1,4 @@
+<% if current_user.client %>
 <h1> Client Feedback You Created</h1> 
 
 <% @feedbacks.each do |fb| %>
@@ -20,3 +21,27 @@
   <p><%= link_to 'Edit Feedback', edit_feedback_path(fb), class: 'btn btn-primary' %>
 <% end %>
 
+<% else %>
+<h1> Client Feedback For You</h1> 
+
+<% @your_feedbacks.each do |fb| %>
+  <p><b>Milestone</b>: <%= fb.milestone %>
+  <p><b>Team Under Evaluation</b>: <%= fb.team.name %> 
+  <p><b>Project Expectations</b>: <%= fb.q1 %> 
+  <p><b>Requirements Have Good Scope</b>: <%= fb.q2 %> 
+  <p><b>Good Quantity And Quality</b>: <%= fb.q3 %> 
+  <p><b>Confidence With Project Completion</b>: <%= fb.q4 %> 
+  <p><b>Would Hire Full Team</b>: <%= fb.q5 %> 
+  <p><b>Students Are Respectful</b>: <%= fb.q6 %> 
+  <p><b>Students Do What Is Expected</b>: <%= fb.q7 %> 
+  <p><b>Students Keep You Up-to-date</b>: <%= fb.q8 %> 
+  <p><b>Students Follow Through With Deliverables</b>: <%= fb.q9 %> 
+  <p><b>Students Communicate Concerns Clearly</b>: <%= fb.q10 %> 
+  <p><b>Students Are Proactive With Your Needs</b>: <%= fb.q11 %> 
+  <p><b>Strengths</b>: <%= fb.oeq1 %> 
+  <p><b>Improvements</b>: <%= fb.oeq2 %> 
+  <p><b>Changes Required</b>: <%= fb.oeq3 %> 
+  <p><%= link_to 'Edit Feedback', edit_feedback_path(fb), class: 'btn btn-primary' %>
+<% end %>
+
+<% end %>
