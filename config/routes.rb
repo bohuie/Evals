@@ -16,7 +16,6 @@ Rails.application.routes.draw do
 
 
   get '/peer_evals' => 'peer_evals#index'
-
   get '/peer_evals/new' => 'peer_evals#new'
   post '/peer_evals' => 'peer_evals#create'
 
@@ -27,7 +26,6 @@ Rails.application.routes.draw do
 
 
   get '/group_evals' => 'group_evals#index'
-
   get '/group_evals/new' => 'group_evals#new'
   post '/group_evals' => 'group_evals#create'
 
@@ -37,14 +35,19 @@ Rails.application.routes.draw do
   patch '/group_evals/:id' => 'group_evals#update'
 
   get '/teams' => 'teams#index'
-
   get '/teams/new' => 'teams#new'
   post '/teams' => 'teams#create'
 
   get '/teams/:id' => 'teams#show', as: :team
-
   get '/teams/:id/edit' => 'teams#edit', as: :edit_team
   patch '/teams/:id' => 'teams#update'
+
+  get '/feedbacks' => 'feedbacks#index'
+  get '/feedbacks/new' => 'feedbacks#new'
+  post '/feedbacks' => 'feedbacks#create'
+  get '/feedbacks/:id' => 'feedbacks#show', as: :feedback
+  get '/feedbacks/:id/edit' => 'feedbacks#edit', as: :edit_feedback
+  patch '/feedbacks/:id' => 'feedbacks#update'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

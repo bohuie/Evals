@@ -1,0 +1,21 @@
+<h2> Client Feedback for <%= @feedback.team.name %></h2> 
+
+<p><b>Milestone</b>: <%= @feedback.milestone %>
+<p><b>Team Under Evaluation</b>: <%= @feedback.team.name %> 
+<p><b>Project Expectations</b>: <%= @feedback.q1 %> 
+<p><b>Requirements Have Good Scope</b>: <%= @feedback.q2 %> 
+<p><b>Good Quantity And Quality</b>: <%= @feedback.q3 %> 
+<p><b>Confidence With Project Completion</b>: <%= @feedback.q4 %> 
+<p><b>Would Hire Full Team</b>: <%= @feedback.q5 %> 
+<p><b>Students Are Respectful</b>: <%= @feedback.q6 %> 
+<p><b>Students Do What Is Expected</b>: <%= @feedback.q7 %> 
+<p><b>Students Keep You Up-to-date</b>: <%= @feedback.q8 %> 
+<p><b>Students Follow Through With Deliverables</b>: <%= @feedback.q9 %> 
+<p><b>Students Communicate Concerns Clearly</b>: <%= @feedback.q10 %> 
+<p><b>Students Are Proactive With Your Needs</b>: <%= @feedback.q11 %> 
+<p><b>Strengths</b>: <%= @feedback.oeq1 %> 
+<p><b>Improvements</b>: <%= @feedback.oeq2 %> 
+<p><b>Changes Required</b>: <%= @feedback.oeq3 %> 
+
+<p><%= link_to 'Edit Feedback', edit_feedback_path(@feedback), class: 'btn btn-primary' %>
+

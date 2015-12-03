@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   has_many :peer_evals
   has_many :group_evals
   belongs_to :team
+  has_many :feedbacks
 
   validates :first_name, :last_name, presence: true
 

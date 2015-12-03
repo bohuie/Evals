@@ -11,7 +11,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151201051454) do
+ActiveRecord::Schema.define(version: 20151203173209) do
+
+  create_table "feedbacks", force: :cascade do |t|
+    t.string   "company"
+    t.integer  "creator_id"
+    t.integer  "team_id"
+    t.string   "milestone"
+    t.integer  "q1"
+    t.integer  "q2"
+    t.integer  "q3"
+    t.integer  "q4"
+    t.integer  "q5"
+    t.integer  "q6"
+    t.integer  "q7"
+    t.integer  "q8"
+    t.integer  "q9"
+    t.integer  "q10"
+    t.integer  "q11"
+    t.text     "oeq1"
+    t.text     "oeq2"
+    t.text     "oeq3"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "group_evals", force: :cascade do |t|
     t.text     "questions"
