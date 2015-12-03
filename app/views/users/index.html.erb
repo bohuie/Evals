@@ -1,6 +1,11 @@
 <% @users.each do |u| %>
   <p><%= u.email %> 
   <p><%= u.fullname %> 
+  <% if u.client %>
+    <p><b>client</b>
+  <% else %>
+    <p><b>not a client</b>
+  <% end %>
   <% if u.team %>
     <p><%= u.team.name %> 
   <% end %>

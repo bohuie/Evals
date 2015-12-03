@@ -22,7 +22,7 @@ class UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:email, :last_name, :first_name, :team_id)
+    params.require(:user).permit(:email, :last_name, :first_name, :team_id, :client)
   end
 
   def authenticate_admin

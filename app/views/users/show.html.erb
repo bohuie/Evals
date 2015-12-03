@@ -3,6 +3,12 @@
 <p><b>First name:</b> <%= @user.first_name %> 
 <p><b>Last name:</b> <%= @user.last_name %> 
 <p><b>Email:</b> <%= @user.email %> 
+<p><b>Client?</b> 
+<% if @user.client %>
+  <b>yes</b>
+<% else %>
+  <b>no</b>
+<% end %>
 <% if @user.team %>
   <p><b>Team:</b> <%= @user.team.name %> 
 <% end %>
