@@ -1,0 +1,55 @@
+<h1>Create Reports</h1> 
+
+<%= form_tag '/reports' do %>
+  <p>Student under evaluation: 
+  <%= collection_select :user, :id, User.all, :id, :fullname, {:prompt => 'Select student name'} %>
+  <p>Milestone: 
+  <%= select_tag( "milestone", options_for_select([['Requirements', 'Requirements'], ['Design', 'Design'], ['Final', 'Final']], '3'), {:prompt => 'Which milestone is this for?'}) %>
+
+  <p><%= submit_tag "Submit", class: 'btn btn-primary'%>
+<% end -%>
+
+<p>
+<% if @report and @report.user.present? and @report.peer_evals.present? %>
+  <h1>Summary Peer Evaluations for <%= @report.user.fullname %> </h1>
+  <p><b>Score Details</b>: 
+  <ul>
+    <li>Contribution to Group Goals: <%= @report.average_goals %>
+    <li>Quality of Individual Contributions: <%= @report.average_quality %>
+    <li>Effort and Participation: <%= @report.average_effort %>
+    <li>Considerate of Others: <%= @report.average_considerate %>
+    <li>Contribution of Knowledge: <%= @report.average_knowledge %>
+    <li>Working and Sharing with Others: <%= @report.average_sharing %>
+  </ul>
+  <p><b>Percentage to Use</b>: <%= @report.overall_pct %>
+
+  <p><b>Strengths</b>: 
+  <% @report.peer_evals.each do |pe| %>
+  <%= pe.strength%> 
+  <% end %>
+
+  <p><b>Areas of Improvement</b>: 
+  <% @report.peer_evals.each do |pe| %>
+  <%= pe.weakness%> 
+  <% end %>
+
+  <!--
+  <h1>Detailed Peer Evaluations for <%= @report.user.fullname %> </h1>
+
+  <% @report.peer_evals.each do |pe| %>
+    <p><b>Milestone</b>: <%= pe.milestone %> 
+    <p><b>Created by</b>: <%= pe.creator_id %> 
+    <ul>
+      <li>Contribution to Group Goals: <%= pe.goals %> / 4
+      <li>Quality of Individual Contributions: <%= pe.quality %> / 4
+      <li>Effort and Participation: <%= pe.effort %> / 4
+      <li>Considerate of Others: <%= pe.considerate %> / 4
+      <li>Contribution of Knowledge: <%= pe.knowledge%> / 4
+      <li>Working and Sharing with Others: <%= pe.sharing%> / 4
+    </ul>
+    <p><b>Strengths</b>: <%= pe.strength%> 
+    <p><b>Areas of Improvement</b>: <%= pe.weakness%> 
+  <% end %>
+  -->
+
+<% end %>

@@ -49,6 +49,9 @@ Rails.application.routes.draw do
   get '/feedbacks/:id/edit' => 'feedbacks#edit', as: :edit_feedback
   patch '/feedbacks/:id' => 'feedbacks#update'
 
+  get '/reports' => 'reports#index'
+  post '/reports' => 'reports#create'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
