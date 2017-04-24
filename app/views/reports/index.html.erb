@@ -37,7 +37,7 @@
 
   <% @report.peer_evals.each do |pe| %>
     <p><b>Milestone</b>: <%= pe.milestone %> 
-    <p><b>Created by</b>: <%= pe.creator_id %> <%= link_to '(Show user)', user_path(pe.creator_id) %>
+    <p><b>Created by</b>: <%= pe.creator.fullname %> <%= link_to '(Show user)', user_path(pe.creator_id) %>
     <ul>
       <li>Contribution to Group Goals: <%= pe.goals %> / 4
       <li>Quality of Individual Contributions: <%= pe.quality %> / 4
