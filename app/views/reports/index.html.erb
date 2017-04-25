@@ -1,16 +1,51 @@
 <h1>Create Reports</h1> 
-
+<div class="row">
+<div class="col-md-4">
+<h4>View Report about a Student's evaluations they have received</h4>
+</div>
+<div class="col-md-4">
+<h4>View Report about a Student's evaluations they have done</h4>
+</div>
+<div class="col-md-4">
+<h4>View Report about a Group's evaluations they have received</h4>
+</div>
+</div>
+<div class="row">
+<div class="col-md-4">
 <%= form_tag '/reports' do %>
   <p>Student under evaluation: 
-  <%= collection_select :user, :id, User.all, :id, :fullname, {:prompt => 'Select student name'} %>
+  <%= collection_select :user, :id, User.all, :id, :fullname, {:prompt => 'Select student name'} %></p>
   <p>Milestone: 
-  <%= select_tag( "milestone", options_for_select([['Requirements', 'Requirements'], ['Design', 'Design'], ['Final', 'Final']], '3'), {:prompt => 'Which milestone is this for?'}) %>
-
-  <p><%= submit_tag "Submit", class: 'btn btn-primary'%>
+  <%= select_tag( "milestone", options_for_select([['Requirements', 'Requirements'], ['Design', 'Design'], ['Final', 'Final']], '3'), {:prompt => 'Which milestone is this for?'}) %></p>
+  <p><%= submit_tag "Submit", class: 'btn btn-primary'%></p>
+  <%= hidden_field_tag 'report', 'student' %>
 <% end -%>
+</div>
+<div class="col-md-4">
+<%= form_tag '/reports' do %>
+  <p>Student: 
+  <%= collection_select :user, :id, User.all, :id, :fullname, {:prompt => 'Select student name'} %></p>
+  <p>Milestone: 
+  <%= select_tag( "milestone", options_for_select([['Requirements', 'Requirements'], ['Design', 'Design'], ['Final', 'Final']], '3'), {:prompt => 'Which milestone is this for?'}) %></p>
 
+  <%= hidden_field_tag 'report', 'evals' %>
+  <p><%= submit_tag "Submit", class: 'btn btn-primary'%></p>
+<% end -%>
+</div>
+<div class="col-md-4">
+<%= form_tag '/reports' do %>
+  <p>Team: 
+  <%= collection_select :team, :id, Team.all, :id, :name, {:prompt => 'Select group name'} %></p>
+  <p>Milestone: 
+  <%= select_tag( "milestone", options_for_select([['Requirements', 'Requirements'], ['Design', 'Design'], ['Final', 'Final']], '3'), {:prompt => 'Which milestone is this for?'}) %></p>
+
+  <%= hidden_field_tag 'report', 'groups' %>
+  <p><%= submit_tag "Submit", class: 'btn btn-primary'%></p>
+<% end -%>
+</div>
+</div>
 <p>
-<% if @report and @report.user.present? and @report.peer_evals.present? %>
+<% if @report_type == 'student' and @report and @report.user.present? and @report.peer_evals.present? %>
   <h1>Summary Peer Evaluations for <%= @report.user.fullname %> </h1>
   <p><b>Score Details</b>: 
   <ul>
@@ -48,6 +83,53 @@
     </ul>
     <p><b>Strengths</b>: <%= pe.strength%> 
     <p><b>Areas of Improvement</b>: <%= pe.weakness%> 
+  <% end %>
+<% elsif @report_type == 'evals' and @report and @report.user.present? and (@report.peer_evals.present? or @report.group_evals.present?) %>
+<div class="col-md-6">
+  <h1>Detailed Peer Evaluations by <%= @report.user.fullname %> </h1>
+
+  <% @report.peer_evals.each do |pe| %>
+    <p><b>Milestone</b>: <%= pe.milestone %> 
+    <p><b>Created for</b>: <%= pe.user.fullname %> <%= link_to '(Show user)', user_path(pe.user_id) %>
+    <ul>
+      <li>Contribution to Group Goals: <%= pe.goals %> / 4
+      <li>Quality of Individual Contributions: <%= pe.quality %> / 4
+      <li>Effort and Participation: <%= pe.effort %> / 4
+      <li>Considerate of Others: <%= pe.considerate %> / 4
+      <li>Contribution of Knowledge: <%= pe.knowledge%> / 4
+      <li>Working and Sharing with Others: <%= pe.sharing%> / 4
+    </ul>
+    <p><b>Strengths</b>: <%= pe.strength%> 
+    <p><b>Areas of Improvement</b>: <%= pe.weakness%> 
+  <% end %>
+</div>
+<div class="col-md-6">
+ <h1>Detailed Group Evaluations by <%= @report.user.fullname %> </h1>
+
+  <% @report.group_evals.each do |ge| %>
+    <p><b>Milestone</b>: <%= ge.milestone %> 
+    <p><b>Created for</b>: <%= ge.team.name %> <%= link_to '(Show team)', team_path(ge.team_id) %>
+    <ul>
+      <li>Presentation: <%= ge.presentation %> / 4
+      <li>Ability to answer questions: <%= ge.answering %> / 4
+      <li>Quality of contributions: <%= ge.contribution %> / 4
+    </ul>
+    <p><b>Strengths</b>: <%= ge.strength%> 
+    <p><b>Areas of Improvement</b>: <%= ge.weakness%> 
+  <% end %>
+</div>
+<% elsif @report_type == 'groups' and @report and @report.group.present? and @report.group_evals.present? %>
+<h1>Detailed Group Evaluations for <%= @report.group.name %> </h1>
+  <% @report.group_evals.each do |ge| %>
+    <p><b>Milestone</b>: <%= ge.milestone %> 
+    <p><b>Created by</b>: <%= ge.creator.fullname %> <%= link_to '(Show user)', user_path(ge.creator_id) %>
+    <ul>
+      <li>Presentation: <%= ge.presentation %> / 4
+      <li>Ability to answer questions: <%= ge.answering %> / 4
+      <li>Quality of contributions: <%= ge.contribution %> / 4
+    </ul>
+    <p><b>Strengths</b>: <%= ge.strength%> 
+    <p><b>Areas of Improvement</b>: <%= ge.weakness%> 
   <% end %>
 
 <% end %>
