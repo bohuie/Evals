@@ -14,9 +14,9 @@
 <div class="col-md-4">
 <%= form_tag '/reports' do %>
   <p>Student under evaluation: 
-  <%= collection_select :user, :id, User.all, :id, :fullname, {:prompt => 'Select student name'} %></p>
+  <%= collection_select :user, :id, User.all, :id, :fullname, {:prompt => 'Select student name'}, required: true %></p>
   <p>Milestone: 
-  <%= select_tag( "milestone", options_for_select([['Requirements', 'Requirements'], ['Design', 'Design'], ['Final', 'Final']], '3'), {:prompt => 'Which milestone is this for?'}) %></p>
+  <%= select_tag( "milestone", options_for_select([['Requirements', 'Requirements'], ['Design', 'Design'], ['Final', 'Final']], '3'), {:prompt => 'Which milestone is this for?', required: true}) %></p>
   <p><%= submit_tag "Submit", class: 'btn btn-primary'%></p>
   <%= hidden_field_tag 'report', 'student' %>
 <% end -%>
@@ -24,9 +24,9 @@
 <div class="col-md-4">
 <%= form_tag '/reports' do %>
   <p>Student: 
-  <%= collection_select :user, :id, User.all, :id, :fullname, {:prompt => 'Select student name'} %></p>
+  <%= collection_select :user, :id, User.all, :id, :fullname, {:prompt => 'Select student name'}, required: true %></p>
   <p>Milestone: 
-  <%= select_tag( "milestone", options_for_select([['Requirements', 'Requirements'], ['Design', 'Design'], ['Final', 'Final']], '3'), {:prompt => 'Which milestone is this for?'}) %></p>
+  <%= select_tag( "milestone", options_for_select([['Requirements', 'Requirements'], ['Design', 'Design'], ['Final', 'Final']], '3'), {:prompt => 'Which milestone is this for?', required: true}) %></p>
 
   <%= hidden_field_tag 'report', 'evals' %>
   <p><%= submit_tag "Submit", class: 'btn btn-primary'%></p>
@@ -37,7 +37,7 @@
   <p>Team: 
   <%= collection_select :team, :id, Team.all, :id, :name, {:prompt => 'Select group name'} %></p>
   <p>Milestone: 
-  <%= select_tag( "milestone", options_for_select([['Requirements', 'Requirements'], ['Design', 'Design'], ['Final', 'Final']], '3'), {:prompt => 'Which milestone is this for?'}) %></p>
+  <%= select_tag( "milestone", options_for_select([['Requirements', 'Requirements'], ['Design', 'Design'], ['Final', 'Final']], '3'), {:prompt => 'Which milestone is this for?', required: true}) %></p>
 
   <%= hidden_field_tag 'report', 'groups' %>
   <p><%= submit_tag "Submit", class: 'btn btn-primary'%></p>
