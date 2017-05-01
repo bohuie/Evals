@@ -1,5 +1,5 @@
 class Report
-  attr_accessor :user, :peer_evals
+  attr_accessor :user, :group, :peer_evals, :group_evals
 
   def average_goals
     @avg1 = self.peer_evals.average(:goals)
