@@ -15,7 +15,7 @@
     <%= form_tag '/reports' do %>
       <p>
         Student under evaluation: 
-        <%= collection_select :user, :id, User.all, :id, :fullname, {:prompt => 'Select student name'}, required: true %>
+        <%= collection_select :user, :id, User.all.order(:last_name), :id, :fullname, {:prompt => 'Select student name'}, required: true %>
       </p>
       <p>
         Milestone: 
@@ -29,7 +29,7 @@
     <%= form_tag '/reports' do %>
       <p>
         Student: 
-        <%= collection_select :user, :id, User.all, :id, :fullname, {:prompt => 'Select student name'}, required: true %>
+        <%= collection_select :user, :id, User.all.order(:last_name), :id, :fullname, {:prompt => 'Select student name'}, required: true %>
       </p>
       <p>
         Milestone: 
@@ -43,7 +43,7 @@
     <%= form_tag '/reports' do %>
       <p>
         Team: 
-        <%= collection_select :team, :id, Team.all, :id, :name, {:prompt => 'Select group name'} %>
+        <%= collection_select :team, :id, Team.all.order(:name), :id, :name, {:prompt => 'Select group name'} %>
       </p>
       <p>
         Milestone: 
