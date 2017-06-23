@@ -3,7 +3,11 @@ class FeedbacksController < ApplicationController
   before_filter :load_feedback, only: [:show, :edit, :update]
 
   def index
-    @feedbacks = Feedback.where(:creator_id => current_user.id)
+    if current_user.admin
+      @feedbacks = Feedback.all
+    else
+      @feedbacks = Feedback.where(:creator_id => current_user.id)
+    end
     @your_feedbacks = Feedback.where(:team_id => current_user.team_id)
   end
 
