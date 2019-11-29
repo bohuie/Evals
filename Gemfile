@@ -1,11 +1,13 @@
 source 'https://rubygems.org'
 
+gem 'rake'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.5'
-gem 'devise', '~> 3.4.0'
+gem 'rails', '4.2.11.1'
+gem 'devise', '~> 4.7.1'
 gem 'rails_admin'
 
-ruby '2.2.1'
+ruby '2.6.5'
 
 gem 'spring'
 
@@ -19,7 +21,7 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'bootstrap-sass'
 
 # See https://github.com/rails/execjs#readme for more supported runtimes
-gem 'therubyracer', platforms: :ruby
+gem 'mini_racer'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -47,14 +49,13 @@ end
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'sqlite3'
+  gem 'sqlite3', '~> 1.3.11'
   gem 'byebug'
 end
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
-
   gem 'autoprefixer-rails'
 end
 

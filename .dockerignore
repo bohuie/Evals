@@ -1,0 +1,15 @@
+*
+!app/**/*
+!config/**/*
+!lib/**/*
+!public/**/*
+!Gemfile
+!Gemfile.lock
+!Rakefile
+!test/**/*
+!config.ru
+!entrypoint.sh
+!bin/**/*
+!db/schema.rb
+!db.seeds.rb
+!db/migrate/**/*
