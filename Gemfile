@@ -55,7 +55,7 @@ group :development, :test do
   gem 'factory_bot'
   gem 'simplecov'
   gem 'simplecov-console'
-  # gem 'shoulda-matchers'
+  gem 'shoulda-matchers'
   # gem 'capybara'
   # gem 'launchy'
   gem 'database_cleaner'
