@@ -56,6 +56,8 @@ GEM
     coffee-script-source (1.12.2)
     concurrent-ruby (1.1.5)
     crass (1.0.5)
+    cypress-on-rails (1.5.0)
+      rack
     database_cleaner (1.7.0)
     debug_inspector (0.0.3)
     devise (4.7.1)
@@ -260,6 +262,7 @@ DEPENDENCIES
   bootstrap-sass
   byebug
   coffee-rails (~> 4.1.0)
+  cypress-on-rails (~> 1.0)
   database_cleaner
   devise (~> 4.7.1)
   factory_bot

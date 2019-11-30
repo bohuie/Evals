@@ -9,4 +9,8 @@ FactoryBot.define do
             password { "janespassword" }
         end
     end
+
+    factory :feedback do
+        
+    end
 end

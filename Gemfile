@@ -59,6 +59,7 @@ group :development, :test do
   # gem 'capybara'
   # gem 'launchy'
   gem 'database_cleaner'
+  gem 'cypress-on-rails', '~> 1.0'
 end
 
 group :development do
