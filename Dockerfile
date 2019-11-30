@@ -123,7 +123,7 @@ ADD Gemfile Gemfile.lock ./
 RUN gem install bundler
 RUN bundle install
 ADD package.json yarn.lock ./
-RUN yarn
+RUN yarn --color=always
 ADD . .
 RUN rake
 RUN ./cypress.sh

@@ -4,6 +4,7 @@
 !lib/**/*
 !public/**/*
 public/packs*
+public/assets*
 !Gemfile
 !Gemfile.lock
 !Rakefile
