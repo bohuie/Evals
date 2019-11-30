@@ -1,11 +1,16 @@
 require 'rails_helper'
 
-RSpec.describe User, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+describe User, type: :model do
+  it "Should instantiate" do
+    user = build(:user)
+  end
 end
 
 FactoryBot.define do
   factory :user do
+    first_name { "Jane" }
+    last_name {"Doe" }
+    admin { false }
     
   end
 end

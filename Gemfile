@@ -53,6 +53,12 @@ group :development, :test do
   gem 'byebug'
   gem 'rspec-rails'
   gem 'factory_bot'
+  gem 'simplecov'
+  gem 'simplecov-console'
+  # gem 'shoulda-matchers'
+  # gem 'capybara'
+  # gem 'launchy'
+  gem 'database_cleaner'
 end
 
 group :development do
@@ -60,4 +66,3 @@ group :development do
   gem 'web-console', '~> 2.0'
   gem 'autoprefixer-rails'
 end
-
