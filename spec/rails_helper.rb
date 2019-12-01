@@ -61,11 +61,38 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
+
+  config.order = "random"
 end
 
 Shoulda::Matchers.configure do |config|
   config.integrate do |with|
     with.test_framework :rspec
     with.library :rails
+  end
+end
+
+# Monkeypatch to fix the issue here: https://github.com/rails/rails/issues/34790
+if RUBY_VERSION>='2.6.0'
+  if Rails.version < '5'
+    class ActionController::TestResponse < ActionDispatch::TestResponse
+      def recycle!
+        # hack to avoid MonitorMixin double-initialize error:
+        @mon_mutex_owner_object_id = nil
+        @mon_mutex = nil
+        initialize
+      end
+    end
+  else
+    puts "Monkeypatch for ActionController::TestResponse no longer needed"
+  end
+end
+
+class ActionController::LiveTestResponse < ActionController::Live::Response
+  def recycle!
+    @body = nil
+    @mon_mutex_owner_object_id = nil
+    @mon_mutex = nil
+    initialize
   end
 end
