@@ -1,12 +1,5 @@
 require 'simplecov'
-SimpleCov.start 'rails' do
-  add_filter "/test/"
-  add_filter "/spec/"
-  add_filter "/config/"
-  add_filter do |source_file|
-    source_file.lines.count < 10
-  end
-end
+SimpleCov.start 'rails'
 require 'simplecov-console'
 
 SimpleCov::Formatter::Console.show_covered = true

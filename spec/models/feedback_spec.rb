@@ -26,10 +26,25 @@ describe Feedback, type: :model do
     it { should validate_presence_of(:oeq3) }
   end
 
-  it "Should have a hard-coded total?", skip: true do
+  it "Should have a hard-coded total?" do
     feedback = build(:feedback)
     expect(feedback.total).to eq 45
-    expect(feedback.sum).to eq 0
+  end
+
+  it "Should sum the q1 through q11" do
+    feedback = build(:feedback)
+    feedback.q1 = 1
+    feedback.q2 = 2
+    feedback.q3 = 3
+    feedback.q4 = 4
+    feedback.q5 = 5
+    feedback.q6 = 6
+    feedback.q7 = 7
+    feedback.q8 = 8
+    feedback.q9 = 9
+    feedback.q10 = 10
+    feedback.q11 = 11
+    expect(feedback.sum).to eq 63
   end
 
 end
