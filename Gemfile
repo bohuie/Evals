@@ -11,6 +11,7 @@ gem 'spring'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
+gem 'sqlite3', '~> 1.3.11'
 
 group :production do
   gem 'pg'
@@ -20,7 +21,6 @@ end
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'sqlite3', '~> 1.3.11'
   gem 'byebug'
   gem 'rspec-rails'
   gem 'factory_bot_rails'
