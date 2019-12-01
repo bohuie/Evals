@@ -126,7 +126,7 @@ ADD package.json yarn.lock ./
 RUN yarn --color=always
 ADD . .
 RUN rake
-RUN ./cypress.sh
+RUN ./cypress-ci.sh
 RUN SECRET_KEY_BASE=dummy rake assets:precompile
 ENV PORT 80
 ENV RAILS_ENV=production

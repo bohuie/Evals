@@ -13,5 +13,9 @@
   "devDependencies": {
     "cypress": "^3.7.0",
     "webpack-dev-server": "^3.9.0"
+  },
+  "scripts": {
+    "db:reset": "rm db/*.sqlite3 || true && ./bin/rake db:create db:migrate db:seed",
+    "db:seed": "./bin/rake db:seed"
   }
 }
