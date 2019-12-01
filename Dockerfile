@@ -1,4 +1,4 @@
-FROM ruby:2.6.5
+FROM ruby:2.6.5 AS builder
 
 RUN groupadd --gid 1000 node \
   && useradd --uid 1000 --gid node --shell /bin/bash --create-home node
@@ -121,7 +121,7 @@ WORKDIR /app
 ENV RAILS_ENV=test
 ADD Gemfile Gemfile.lock ./
 ADD vendor ./vendor
-RUN bundle install --deployment --local
+RUN bundle install --deployment --local --without production
 RUN bundle binstubs --all
 
 ADD package.json yarn.lock ./
@@ -145,65 +145,31 @@ RUN rm -rf public/assets
 RUN rm -rf public/packs-test
 RUN SECRET_KEY_BASE=dummy bundle exec rake assets:precompile
 
+# Multi-Stage, move the built artifact to a fresh container.
 
-# Clean up all the unneeded elements for building only.
-RUN rm /etc/apt/sources.list.d/google-chrome.list
-RUN rm /etc/apt/sources.list.d/google.list
+FROM ruby:2.6.5-alpine as build-alpine
+WORKDIR /app
+ENV RAILS_ENV=production
+ENV PORT=80
+ENV HOST=localhost
+COPY --from=builder /app .
 
-RUN rm -rf /opt/yarn-v$YARN_VERSION/bin/yarn
-RUN rm /usr/local/bin/yarn
-RUN rm -rf /opt/yarn-v$YARN_VERSION/bin/yarnpkg 
-RUN rm /usr/local/bin/yarnpkg
-
-RUN rm -rf /usr/local/bin/node 
-RUN rm /usr/local/bin/nodejs
-
-RUN rm -rf /opt/firefox/firefox
-RUN rm /usr/bin/firefox
-
-RUN deluser --remove-home node
+RUN apk update
+RUN apk --no-cache add build-base
+RUN apk add postgresql-dev
+RUN apk add sqlite-dev
+RUN apk add tzdata
 
 RUN rm -rf node_modules
 RUN rm -rf coverage
-
-RUN apt-get update && apt-get purge -y \
-  google-chrome-stable \
-  libgtk2.0-0 \
-  libgtk-3-0 \
-  libnotify-dev \
-  libgconf-2-4 \
-  libnss3 \
-  libxss1 \
-  libasound2 \
-  libxtst6 \
-  xauth \
-  xvfb \
-  fonts-arphic-bkai00mp \
-  fonts-arphic-bsmi00lp \
-  fonts-arphic-gbsn00lp \
-  fonts-arphic-gkai00mp \
-  fonts-arphic-ukai \
-  fonts-arphic-uming \
-  ttf-wqy-zenhei \
-  ttf-wqy-microhei \
-  xfonts-wqy \
-  && apt-get -y autoremove \
-  && rm -rf /var/lib/apt/lists/*
-
 RUN rm -rf .bundle
 RUN rm -rf ./vendor/bundle
-RUN rm -rf bin
-RUN bundle install --without development test
-RUN bundle binstubs --all
-RUN yes | bundle exec rake rails:update:bin -Aq
-RUN rm -rf ./vendor/cache
-RUN rm -rf ./npm-packages-offline-cache
-
-RUN rm -rf spec
 RUN rm -rf log
 RUN rm -rf tmp
 RUN rm db/*.sqlite3
-RUN rm -rf /root/.cache
-RUN rm -rf /root/.ngrok
-RUN rm -rf /tmp/*
+
+RUN bundle install --without development test
+
+RUN rm -rf ./vendor/cache
+
 CMD ./entrypoint.sh

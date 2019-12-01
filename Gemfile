@@ -12,6 +12,7 @@ gem 'spring'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
 gem 'sqlite3', '~> 1.3.11'
+gem 'webpacker', '~> 4.x'
 
 group :production do
   gem 'pg'
@@ -31,7 +32,6 @@ group :development, :test do
   # gem 'launchy'
   gem 'database_cleaner'
   gem 'cypress-on-rails', '~> 1.0'
-  gem 'webpacker', '~> 4.x'
 end
 
 group :development do
