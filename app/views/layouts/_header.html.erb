@@ -1,39 +1,30 @@
 <ul class="nav nav-tabs">
-  <li role="presentation"> <%= link_to "Home", welcome_index_path %></li>
-
   <% if user_signed_in? %>
+    <li role="presentation"> <%= link_to "Home", welcome_index_path %></li>
+
     <% if !current_user.client or current_user.admin %>
       <li role="presentation"> <%= link_to "Create New Peer Eval", peer_evals_new_path %></li>
       <li role="presentation"> <%= link_to "My Peer Evals", peer_evals_path %></li>
       <li role="presentation"> <%= link_to "Create New Group Eval", group_evals_new_path %></li>
       <li role="presentation"> <%= link_to "My Group Evals", group_evals_path %></li>
     <% end %>
-  <% end %>
 
-  <% if user_signed_in? %>
     <% if current_user.client or current_user.admin %>
       <li role="presentation"> <%= link_to "Create Client Feedback", feedbacks_new_path %></li>
     <% end %>
-  <% end %>
-  <% if user_signed_in? && current_user.admin %>
-    <li role="presentation"> <%= link_to "All Client Feedback", feedbacks_path %></li>
-  <% else %>
-    <li role="presentation"> <%= link_to "My Client Feedback", feedbacks_path %></li>
-  <% end %>
+    <% if user_signed_in? && current_user.admin %>
+      <li role="presentation"> <%= link_to "All Client Feedback", feedbacks_path %></li>
+    <% else %>
+      <li role="presentation"> <%= link_to "My Client Feedback", feedbacks_path %></li>
+    <% end %>
 
-  <% if user_signed_in? %>
     <% if current_user.admin %>
       <li role="presentation"> <%= link_to " Student Reports", reports_path %></li>
     <% end %>
-  <% end %>
 
-  <li role="presentation" class="pull-right">
-    <% if user_signed_in? %>
-      Signed in as <%= current_user.email %>. 
-      <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
-    <% else %>
-      <%= link_to "Sign up", new_user_registration_path %> or
-      <%= link_to "Sign in", new_user_session_path %>
-    <% end %>
-  </li>
+    <li role="presentation" class="pull-right">
+        Signed in as <%= current_user.email %>.
+        <%= link_to "Sign out", destroy_user_session_path %>
+    </li>
+  <% end %>
 </ul>

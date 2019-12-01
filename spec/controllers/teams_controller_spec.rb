@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe WelcomeController, type: :controller do
+describe TeamsController, type: :controller do
     include Devise::TestHelpers
     
     describe "GET index" do 
@@ -13,7 +13,7 @@ describe WelcomeController, type: :controller do
             @user = create(:valid_user)
             sign_in @user
             get :index
-            expect(response).to render_template("index")
+            expect(response).to redirect_to("/users/sign_in")
         end
     end
 end

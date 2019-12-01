@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe WelcomeController, type: :controller do
+describe GroupEvalsController, type: :controller do
     include Devise::TestHelpers
     
     describe "GET index" do 
@@ -9,7 +9,7 @@ describe WelcomeController, type: :controller do
             expect(response).to redirect_to("/users/sign_in")
         end
 
-        it "Authenticated non-admin users get a re-direct" do
+        it "Authenticated users get rendered page" do
             @user = create(:valid_user)
             sign_in @user
             get :index
