@@ -9,7 +9,7 @@ describe('Sign In', function() {
       cy.url().should('include', '/sign_in')
     });
 
-    it('Admin can login', function() {
+    it('Admin can login, see the admin page, and logout', function() {
       cy.visit('/users/sign_in')
 
       const username = "admin@localhost.com"
@@ -20,11 +20,13 @@ describe('Sign In', function() {
       // {enter} causes the form to submit
       cy.get('input[id=user_password]').type(`${password}{enter}`)
 
-      cy.visit('/feedbacks');
-      cy.url().should('include', '/feedbacks')
+      cy.visit('/admin');
+      cy.url().should('include', '/admin')
+
+      cy.visit('/users/sign_out')
     });
 
-    it('User can login', function() {
+    it('User can login, cannot see admin page, can see feedbacks, and can logout', function() {
       cy.visit('/users/sign_in')
 
       const username = "user.one@localhost.com"
@@ -35,7 +37,12 @@ describe('Sign In', function() {
       // {enter} causes the form to submit
       cy.get('input[id=user_password]').type(`${password}{enter}`)
 
+      cy.visit('/admin');
+      cy.url().should('not.include', '/admin')
+
       cy.visit('/feedbacks');
       cy.url().should('include', '/feedbacks')
+
+      cy.visit('/users/sign_out')
     });
 });
