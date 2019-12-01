@@ -3,8 +3,9 @@ FROM ruby:2.6.5
 RUN groupadd --gid 1000 node \
   && useradd --uid 1000 --gid node --shell /bin/bash --create-home node
 
-ENV NODE_VERSION 12.13.1
-ENV YARN_VERSION 1.19.2
+ARG NODE_VERSION=12.13.1
+ARG YARN_VERSION=1.19.2
+ARG FIREFOX_VERSION=70.0.1
 
 RUN ARCH= && dpkgArch="$(dpkg --print-architecture)" \
   && case "${dpkgArch##*-}" in \
@@ -100,10 +101,9 @@ RUN apt-get update && \
 ENV DBUS_SESSION_BUS_ADDRESS=/dev/null
 
 # Add zip utility - it comes in very handy
-RUN apt-get update && apt-get install -y zip
+RUN apt-get update && apt-get install -y zip && rm -rf /var/lib/apt/lists/*
 
 # install Firefox browser
-ARG FIREFOX_VERSION=70.0.1
 RUN wget --no-verbose -O /tmp/firefox.tar.bz2 https://download-installer.cdn.mozilla.net/pub/firefox/releases/$FIREFOX_VERSION/linux-x86_64/en-US/firefox-$FIREFOX_VERSION.tar.bz2 \
   && tar -C /opt -xjf /tmp/firefox.tar.bz2 \
   && rm /tmp/firefox.tar.bz2 \
@@ -118,17 +118,92 @@ ENV npm_config_loglevel warn
 ENV npm_config_unsafe_perm true
 
 WORKDIR /app
-
+ENV RAILS_ENV=test
 ADD Gemfile Gemfile.lock ./
-RUN gem install bundler
-RUN bundle install
+ADD vendor ./vendor
+RUN bundle install --deployment --local
+RUN bundle binstubs --all
+
 ADD package.json yarn.lock ./
-RUN yarn --color=always
+ADD .yarnrc yarn.lock ./
+ADD npm-packages-offline-cache ./npm-packages-offline-cache
+RUN yarn install --color=always --offline
+
 ADD . .
-RUN rake
-RUN ./cypress-ci.sh
-RUN SECRET_KEY_BASE=dummy rake assets:precompile
-ENV PORT 80
-ENV RAILS_ENV=production
+RUN yes | bundle exec rake rails:update:bin -Aq
+
+ENV PORT=5002
 ENV HOST=localhost
+
+RUN bundle exec rake
+RUN bundle exec rake webpacker:install
+RUN ./cypress-ci.sh
+
+ENV RAILS_ENV=production
+ENV PORT=80
+RUN rm -rf public/assets
+RUN rm -rf public/packs-test
+RUN SECRET_KEY_BASE=dummy bundle exec rake assets:precompile
+
+
+# Clean up all the unneeded elements for building only.
+RUN rm /etc/apt/sources.list.d/google-chrome.list
+RUN rm /etc/apt/sources.list.d/google.list
+
+RUN rm -rf /opt/yarn-v$YARN_VERSION/bin/yarn
+RUN rm /usr/local/bin/yarn
+RUN rm -rf /opt/yarn-v$YARN_VERSION/bin/yarnpkg 
+RUN rm /usr/local/bin/yarnpkg
+
+RUN rm -rf /usr/local/bin/node 
+RUN rm /usr/local/bin/nodejs
+
+RUN rm -rf /opt/firefox/firefox
+RUN rm /usr/bin/firefox
+
+RUN deluser --remove-home node
+
+RUN rm -rf node_modules
+RUN rm -rf coverage
+
+RUN apt-get update && apt-get purge -y \
+  google-chrome-stable \
+  libgtk2.0-0 \
+  libgtk-3-0 \
+  libnotify-dev \
+  libgconf-2-4 \
+  libnss3 \
+  libxss1 \
+  libasound2 \
+  libxtst6 \
+  xauth \
+  xvfb \
+  fonts-arphic-bkai00mp \
+  fonts-arphic-bsmi00lp \
+  fonts-arphic-gbsn00lp \
+  fonts-arphic-gkai00mp \
+  fonts-arphic-ukai \
+  fonts-arphic-uming \
+  ttf-wqy-zenhei \
+  ttf-wqy-microhei \
+  xfonts-wqy \
+  && apt-get -y autoremove \
+  && rm -rf /var/lib/apt/lists/*
+
+RUN rm -rf .bundle
+RUN rm -rf ./vendor/bundle
+RUN rm -rf bin
+RUN bundle install --without development test
+RUN bundle binstubs --all
+RUN yes | bundle exec rake rails:update:bin -Aq
+RUN rm -rf ./vendor/cache
+RUN rm -rf ./npm-packages-offline-cache
+
+RUN rm -rf spec
+RUN rm -rf log
+RUN rm -rf tmp
+RUN rm db/*.sqlite3
+RUN rm -rf /root/.cache
+RUN rm -rf /root/.ngrok
+RUN rm -rf /tmp/*
 CMD ./entrypoint.sh

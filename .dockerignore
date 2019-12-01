@@ -11,7 +11,6 @@ public/assets*
 !spec/**/*
 !config.ru
 !entrypoint.sh
-!bin/**/*
 
 !db/**/*
 db/**/*.sqlite3
@@ -19,8 +18,13 @@ db/**/*.sqlite3
 !package.json
 !yarn.lock
 !postcss.config.js
+!babel.config.js
 !spec/**/*
 spec/cypress/videos/*
 spec/cypress/screenshots/*
-!.rspec
 !cypress-ci.sh
+!vendor/**/*
+!npm-packages-offline-cache/**/*
+!.yarnrc
+!Procfile
+!.browserslistrc

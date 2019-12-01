@@ -1,17 +1,16 @@
 {
   "license": "UNLICENSED",
-  "dependencies": {
+  "dependencies": {},
+  "devDependencies": {
     "@rails/webpacker": "^4.2.0",
     "bootstrap": "^4.4.1",
     "core-js": "^3.4.5",
+    "cypress": "^3.7.0",
     "jquery": "^3.4.1",
     "popper": "^1.0.1",
     "turbolinks": "^5.2.0",
     "wait-on": "^3.3.0",
-    "webpack": "^4.41.2"
-  },
-  "devDependencies": {
-    "cypress": "^3.7.0",
+    "webpack": "^4.41.2",
     "webpack-dev-server": "^3.9.0"
   },
   "scripts": {
