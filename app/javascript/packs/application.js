@@ -20,12 +20,7 @@ import 'jquery';
 import 'popper.js';
 import 'bootstrap';
 import "regenerator-runtime/runtime";
-import Rails from "@rails/ujs"
-
 import '../stylesheets/application.sass'
-
 
 const Turbolinks = require("turbolinks")
 Turbolinks.start()
-
-Rails.start()

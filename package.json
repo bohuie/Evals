@@ -1,7 +1,6 @@
 {
   "license": "UNLICENSED",
   "dependencies": {
-    "@rails/ujs": "^6.0.1",
     "popper.js": "^1.16.0"
   },
   "devDependencies": {
