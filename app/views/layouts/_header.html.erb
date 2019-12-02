@@ -1,4 +1,4 @@
-<header class="top-bar text-gray-800 sm:flex sm:justify-between sm:items-center sm:px-4 sm:py-3">
+<header class="top-bar">
   <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light nav-justified">
     <a class="navbar-brand" href="/">COSC 499</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -9,30 +9,30 @@
         <ul class="navbar-nav mr-auto ml-auto nav-justified w-50">
 
           <% if !current_user.client or current_user.admin %>
-            <li class="nav-item"> <%= link_to "Create New Peer Eval", peer_evals_new_path %></li>
-            <li class="nav-item"> <%= link_to "My Peer Evals", peer_evals_path %></li>
-            <li class="nav-item"> <%= link_to "Create New Group Eval", group_evals_new_path %></li>
-            <li class="nav-item"> <%= link_to "My Group Evals", group_evals_path %></li>
+            <li class="nav-item mb-auto mt-auto"> <%= link_to "Create New Peer Eval", peer_evals_new_path %></li>
+            <li class="nav-item mb-auto mt-auto"> <%= link_to "My Peer Evals", peer_evals_path %></li>
+            <li class="nav-item mb-auto mt-auto"> <%= link_to "Create New Group Eval", group_evals_new_path %></li>
+            <li class="nav-item mb-auto mt-auto"> <%= link_to "My Group Evals", group_evals_path %></li>
           <% end %>
 
           <% if current_user.client or current_user.admin %>
-            <li class="nav-item"> <%= link_to "Create Client Feedback", feedbacks_new_path %></li>
+            <li class="nav-item mb-auto mt-auto"> <%= link_to "Create Client Feedback", feedbacks_new_path %></li>
           <% end %>
           <% if user_signed_in? && current_user.admin %>
-            <li class="nav-item"> <%= link_to "All Client Feedback", feedbacks_path %></li>
+            <li class="nav-item mb-auto mt-auto"> <%= link_to "All Client Feedback", feedbacks_path %></li>
           <% else %>
-            <li class="nav-item"> <%= link_to "My Client Feedback", feedbacks_path %></li>
+            <li class="nav-item mb-auto mt-auto"> <%= link_to "My Client Feedback", feedbacks_path %></li>
           <% end %>
 
           <% if current_user.admin %>
-            <li class="nav-item"> <%= link_to " Student Reports", reports_path %></li>
+            <li class="nav-item mb-auto mt-auto"> <%= link_to " Student Reports", reports_path %></li>
           <% end %>
         </ul>
 
-          <span class="navbar-text"">
-              <%= current_user.email %>
-              <%= link_to "Sign out", destroy_user_session_path %>
-          </span>
+        <span class="navbar-text">
+            <%= current_user.email %>
+            <%= link_to "Sign out", destroy_user_session_path %>
+        </span>
 
         <% end %>
     </div>
