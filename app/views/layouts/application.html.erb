@@ -9,10 +9,9 @@
 </head>
 
 <body>
-  <div class="container">
   <%= render 'layouts/header' %>
-    <%# = render "shared/flashes" %> 
-    <%= flash_messages %> 
+  <%= flash_messages %> 
+  <div class="container">
     <%= yield %> 
   </div>
 </body>
