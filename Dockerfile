@@ -164,7 +164,7 @@ RUN apk --no-cache add tzdata
 
 RUN rm -rf \
   node_modules \
-  coverave \
+  coverage \
   .bundle \
   ./vendor/bundle \
   log \
@@ -176,13 +176,12 @@ RUN rm -rf \
   babel.config.js \
   postcss.config.js \
   Procfile \
-  cypress-ci-sh \
+  cypress-ci.sh \
   package.json \
   *.log
 
 RUN bundle install --no-cache --deployment --clean --frozen --local --without development test
-
+RUN rm /app/vendor/bundle/ruby/2.6.0/cache/* /app/vendor/cache/*
 RUN apk --no-cache del build-base
-RUN rm -rf ./vendor/cache
 
 CMD ./entrypoint.sh
