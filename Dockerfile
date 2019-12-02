@@ -121,7 +121,7 @@ WORKDIR /app
 ENV RAILS_ENV=test
 ADD Gemfile Gemfile.lock ./
 ADD vendor ./vendor
-RUN bundle install --deployment --local --without production
+RUN bundle install --no-cache --deployment --clean --frozen --local --without production
 RUN bundle binstubs --all
 
 ADD package.json yarn.lock ./
@@ -141,8 +141,10 @@ RUN ./cypress-ci.sh
 
 ENV RAILS_ENV=production
 ENV PORT=80
-RUN rm -rf public/assets
-RUN rm -rf public/packs-test
+RUN rm -rf \
+  public/assets \
+  public/packs-test \
+  public/packs
 RUN SECRET_KEY_BASE=dummy bundle exec rake assets:precompile
 
 # Multi-Stage, move the built artifact to a fresh container.
@@ -156,20 +158,31 @@ COPY --from=builder /app .
 
 RUN apk update
 RUN apk --no-cache add build-base
-RUN apk add postgresql-dev
-RUN apk add sqlite-dev
-RUN apk add tzdata
+RUN apk --no-cache add postgresql-dev
+RUN apk --no-cache add sqlite-dev
+RUN apk --no-cache add tzdata
 
-RUN rm -rf node_modules
-RUN rm -rf coverage
-RUN rm -rf .bundle
-RUN rm -rf ./vendor/bundle
-RUN rm -rf log
-RUN rm -rf tmp
-RUN rm db/*.sqlite3
+RUN rm -rf \
+  node_modules \
+  coverave \
+  .bundle \
+  ./vendor/bundle \
+  log \
+  tmp \
+  db/*.sqlite3 \
+  npm-packages-offline-cache \
+  spec/ \
+  yarn.lock  \
+  babel.config.js \
+  postcss.config.js \
+  Procfile \
+  cypress-ci-sh \
+  package.json \
+  *.log
 
-RUN bundle install --without development test
+RUN bundle install --no-cache --deployment --clean --frozen --local --without development test
 
+RUN apk --no-cache del build-base
 RUN rm -rf ./vendor/cache
 
 CMD ./entrypoint.sh
