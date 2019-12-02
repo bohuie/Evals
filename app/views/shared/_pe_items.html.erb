@@ -1,25 +1,76 @@
 <%= form_for (@peer_eval) do |pe| %>
-  <p><%= pe.label :milestone %>:   
-  <%= pe.select :milestone, [['Requirements', 'Requirements'], ['Design', 'Design'], ['Final', 'Final']], {:prompt => 'Which milestone is this for?'} %>
 
-  <p><%= pe.label :student_under_evaluation %>:   
-  <%= pe.collection_select :user_id, User.all, :id, :fullname, {:prompt => 'Who are you evaluating?'} %>
+  <div class="form-group row">
+    <%= pe.label :milestone, class: "col-sm-2 col-form-label text-right mt-auto mb-auto" %>
+    <div class="col-sm-10 mt-auto mb-auto">
+      <%= pe.select :milestone, [['Requirements', 'Requirements'], ['Design', 'Design'], ['Final', 'Final']], {:prompt => 'Which milestone is this for?'}, class: "w-100 form-control", required: true %>
+    </div>
+  </div>  
 
-  <p><%= pe.label :contribution_to_group_goals %>:       
-  <%= pe.select :goals, [['5 (bonus mark)', 5], ['4 (very good)', 4], ['3 (good)', 3], ['2 (poor)', 2], ['1 (very poor)', 1]], {:prompt => 'Assign a score...'} %>  
-  <p><%= pe.label :quality_of_individual_contributions %>:    
-     <%= pe.select :quality, [['5 (bonus mark)', 5], ['4 (very good)', 4], ['3 (good)', 3], ['2 (poor)', 2], ['1 (very poor)', 1]], {:prompt => 'Assign a score...'} %>  
-  <p><%= pe.label :effort_and_participation %>:     
-     <%= pe.select :effort, [['4 (very good)', 4], ['3 (good)', 3], ['2 (poor)', 2], ['1 (very poor)', 1]], {:prompt => 'Assign a score...'} %>  
-  <p><%= pe.label :consideration_of_others %>:
-     <%= pe.select :considerate, [['4 (very good)', 4], ['3 (good)', 3], ['2 (poor)', 2], ['1 (very poor)', 1]], {:prompt => 'Assign a score...'} %>  
-  <p><%= pe.label :contribution_of_knowledge%>:   
-     <%= pe.select :knowledge, [['4 (very good)', 4], ['3 (good)', 3], ['2 (poor)', 2], ['1 (very poor)', 1]], {:prompt => 'Assign a score...'} %>  
-  <p><%= pe.label :working_and_sharing_with_others %>:     
-     <%= pe.select :sharing, [['5 (bonus mark)', 5], ['4 (very good)', 4], ['3 (good)', 3], ['2 (poor)', 2], ['1 (very poor)', 1]], {:prompt => 'Assign a score...'} %>  
+  <div class="form-group row">
+    <%= pe.label :student_under_evaluation, class: "col-sm-2 col-form-label text-right mt-auto mb-auto" %>
+    <div class="col-sm-10 mt-auto mb-auto">
+        <%= pe.collection_select :user_id, User.all, :id, :fullname, {:prompt => 'Who are you evaluating?'}, class: "w-100 form-control", required: true %>
+    </div>
+  </div>
 
-  <p><%= pe.label :strengths %>:  <%= pe.text_area  :strength, size: "60x10" %>  
-  <p><%= pe.label :areas_of_improvement %>: <%= pe.text_area  :weakness, size: "60x10" %>  
+  <div class="form-group row">
+    <%= pe.label :contribution_to_group_goals, class: "col-sm-2 col-form-label text-right mt-auto mb-auto" %>
+    <div class="col-sm-10 mt-auto mb-auto">
+        <%= pe.select :goals, [['5 (bonus mark)', 5], ['4 (very good)', 4], ['3 (good)', 3], ['2 (poor)', 2], ['1 (very poor)', 1]], {:prompt => 'Assign a score...'}, class: "w-100 form-control", required: true %>  
+    </div>
+  </div>
 
-<p><%= pe.submit "Submit", class: 'btn btn-primary'%>
+  <div class="form-group row">
+    <%= pe.label :quality_of_individual_contributions, class: "col-sm-2 col-form-label text-right mt-auto mb-auto" %>
+    <div class="col-sm-10 mt-auto mb-auto">
+        <%= pe.select :quality, [['5 (bonus mark)', 5], ['4 (very good)', 4], ['3 (good)', 3], ['2 (poor)', 2], ['1 (very poor)', 1]], {:prompt => 'Assign a score...'}, class: "w-100 form-control", required: true %>  
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <%= pe.label :effort_and_participation, class: "col-sm-2 col-form-label text-right mt-auto mb-auto" %>
+    <div class="col-sm-10 mt-auto mb-auto">
+        <%= pe.select :effort, [['4 (very good)', 4], ['3 (good)', 3], ['2 (poor)', 2], ['1 (very poor)', 1]], {:prompt => 'Assign a score...'}, class: "w-100 form-control", required: true %>  
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <%= pe.label :consideration_of_others, class: "col-sm-2 col-form-label text-right mt-auto mb-auto" %>
+    <div class="col-sm-10 mt-auto mb-auto">
+        <%= pe.select :considerate, [['4 (very good)', 4], ['3 (good)', 3], ['2 (poor)', 2], ['1 (very poor)', 1]], {:prompt => 'Assign a score...'}, class: "w-100 form-control", required: true %>  
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <%= pe.label :contribution_of_knowledge, class: "col-sm-2 col-form-label text-right mt-auto mb-auto" %>
+    <div class="col-sm-10 mt-auto mb-auto">
+        <%= pe.select :knowledge, [['4 (very good)', 4], ['3 (good)', 3], ['2 (poor)', 2], ['1 (very poor)', 1]], {:prompt => 'Assign a score...'}, class: "w-100 form-control", required: true %>  
+    </div>
+  </div>
+  
+   <div class="form-group row">
+    <%= pe.label :working_and_sharing_with_others, class: "col-sm-2 col-form-label text-right mt-auto mb-auto" %>
+    <div class="col-sm-10 mt-auto mb-auto">
+        <%= pe.select :sharing, [['5 (bonus mark)', 5], ['4 (very good)', 4], ['3 (good)', 3], ['2 (poor)', 2], ['1 (very poor)', 1]], {:prompt => 'Assign a score...'}, class: "w-100 form-control", required: true %>  
+    </div>
+   </div>
+
+   <div class="form-group row">
+    <%= pe.label :strengths, class: "col-sm-2 col-form-label text-right mt-auto mb-auto" %>
+    <div class="col-sm-10 mt-auto mb-auto">
+        <%= pe.text_area :strength, class: "w-100 form-control", required: true, rows: 8 %>
+    </div>
+   </div>
+
+   <div class="form-group row">
+    <%= pe.label :areas_of_improvement, class: "col-sm-2 col-form-label text-right mt-auto mb-auto" %>
+    <div class="col-sm-10 mt-auto mb-auto">
+        <%= pe.text_area  :weakness, class: "w-100 form-control", required: true, rows: 8 %>
+    </div>
+   </div>
+
+   <div class="w-100 mb-sm-5">
+      <%= pe.submit "Submit", class: "w-100 form-control" %>
+   </div>
 <% end %>
