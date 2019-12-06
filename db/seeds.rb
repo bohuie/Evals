@@ -9,4 +9,5 @@
 User.create!([
     {first_name: "admin", last_name: "user", email: "admin@localhost.com", password: "adminpassword", password_confirmation: "adminpassword", admin: true},
     {first_name: "user", last_name: "one", email: "user.one@localhost.com", password: "useronepassword", password_confirmation: "useronepassword", admin: false},
+    {first_name: "user", last_name: "two", email: "user.two@localhost.com", password: "usertwopassword", password_confirmation: "usertwopassword", admin: false},
   ])

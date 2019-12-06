@@ -1,15 +1,16 @@
 {
   "license": "UNLICENSED",
   "dependencies": {
-    "popper.js": "^1.16.0"
+    "cucumber-html-reporter": "^5.0.2"
   },
   "devDependencies": {
     "@rails/webpacker": "^4.2.0",
     "bootstrap": "^4.4.1",
     "core-js": "^3.4.5",
     "cypress": "^3.7.0",
+    "cypress-cucumber-preprocessor": "^1.18.0",
     "jquery": "^3.4.1",
-    "popper": "^1.0.1",
+    "popper.js": "^1.16.0",
     "turbolinks": "^5.2.0",
     "wait-on": "^3.3.0",
     "webpack": "^4.41.2",
@@ -17,6 +18,16 @@
   },
   "scripts": {
     "db:reset": "rm db/*.sqlite3 || true && ./bin/rake db:create db:migrate db:seed",
-    "db:seed": "./bin/rake db:seed"
+    "db:seed": "./bin/rake db:seed",
+    "report": ""
+  },
+  "cypress-cucumber-preprocessor": {
+    "nonGlobalStepDefinitions": true,
+    "cucumberJson": {
+      "generate": true,
+      "outputFolder": "cypress/reports/cucumber-json",
+      "filePrefix": "",
+      "fileSuffix": ".cucumber"
+    }
   }
 }
