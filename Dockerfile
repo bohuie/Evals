@@ -137,7 +137,7 @@ ENV HOST=localhost
 
 RUN bundle exec rake
 RUN bundle exec rake webpacker:install
-RUN ./cypress-ci.sh
+# RUN ./cypress-ci.sh
 
 ENV RAILS_ENV=production
 ENV PORT=80
