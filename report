@@ -7,7 +7,10 @@ var options = {
     jsonDir: 'spec/cypress/reports/cucumber-json/',
     output: `spec/cypress/reports/${process.env["BROWSER"]}.html`,
     reportSuiteAsScenarios: true,
-    scenarioTimestamp: true
+    scenarioTimestamp: true,
+    ignoreBadJsonFile: true,
+    screenshotsDirectory: 'spec/cypress/screenshots/',
+    storeScreenshots: true
 };
  
 reporter.generate(options);

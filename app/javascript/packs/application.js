@@ -15,12 +15,13 @@
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
 
-import "core-js/stable";
+import 'core-js/stable';
 import 'jquery';
 import 'popper.js';
 import 'bootstrap';
-import "regenerator-runtime/runtime";
-import '../stylesheets/application.sass'
+import 'regenerator-runtime/runtime';
+import '../stylesheets/application.sass';
 
-const Turbolinks = require("turbolinks")
-Turbolinks.start()
+const Turbolinks = require('turbolinks');
+
+Turbolinks.start();
