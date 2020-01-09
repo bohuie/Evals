@@ -4,6 +4,8 @@ import urls from './urls';
 const uuid = require('uuid/v4');
 const getenv = require('getenv');
 
+const users = {};
+
 export function loginWithUsernameAndPassword(cy, username, password) {
   cy.clearCookies();
   cy.visit(urls['sign in']);
@@ -15,15 +17,12 @@ export function loginWithUsernameAndPassword(cy, username, password) {
 export function getUser(cy, name) {
   let user;
 
-  if (!this.users) {
-    this.users = {};
-  }
-
-  if (!(name in this.users)) {
+  if (!(name in users)) {
     const password = uuid().substring(0, 20);
     const firstName = name.split(' ')[0];
-    const lastName = name.split(' ')[1];
-    const username = `${firstName}.${lastName}+${Date.now()}@localhost.com`;
+    const lastName = `${name.split(' ')[1]}${Date.now()}`;
+    const username = `${firstName}.${lastName}@localhost.com`;
+    const fullName = `${firstName} ${lastName}`;
 
     loginWithUsernameAndPassword(cy, getenv('ADMIN_USERNAME', 'admin@localhost.com'), getenv('ADMIN_PASSWORD', 'adminpassword'));
 
@@ -38,20 +37,23 @@ export function getUser(cy, name) {
     user = {
       username,
       password,
+      firstName,
+      lastName,
+      fullName,
     };
 
-    this.users[name] = user;
+    users[name] = user;
   }
 
-  return this.users[name];
+  return users[name];
 }
 
 Given('User {string} exists', function (name) {
-  getUser.bind(this)(cy, name);
+  getUser(cy, name);
 });
 
-Given('I am logged in as user {string}', function (name) {
-  const user = getUser.bind(this)(cy, name);
+Given('I am logged in as {string}', function (name) {
+  const user = getUser(cy, name);
   loginWithUsernameAndPassword(cy, user.username, user.password);
 });
 
