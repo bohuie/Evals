@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe FeedbacksController, type: :controller do
-    include Devise::TestHelpers
+    include Devise::Test::ControllerHelpers
     
     describe "GET index" do 
         it "Unauthenticated users get a re-direct" do

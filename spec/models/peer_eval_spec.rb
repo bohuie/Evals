@@ -5,8 +5,8 @@ describe PeerEval, type: :model do
   describe 'associations' do
     it { should belong_to(:user) }
     it { should belong_to(:creator).class_name("User") }
+    it { should belong_to(:milestone) }
   end
-
 
   describe 'validations' do
     it { should validate_presence_of(:milestone) }

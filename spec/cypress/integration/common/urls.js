@@ -1,8 +1,9 @@
 export default {
-  admin: '/admin',
+  'admin': '/admin',
   'create user': '/admin/user/new',
-  home: '/',
+  'home': '/',
   'my peer evaluations': '/peer_evals',
   'sign in': '/users/sign_in',
   'sign out': '/users/sign_out',
+  'admin milestones': '/admin/milestone'
 };

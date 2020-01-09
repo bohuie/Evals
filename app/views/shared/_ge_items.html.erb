@@ -2,7 +2,7 @@
   <div class="form-group row">
     <%= ge.label :milestone, class: "col-sm-2 col-form-label text-right mt-auto mb-auto" %>
     <div class="col-sm-10 mt-auto mb-auto">
-      <%= ge.select :milestone, [['Requirements', 'Requirements'], ['Design', 'Design'], ['Final', 'Final']], {:prompt => 'Which milestone is this for?'}, class: "w-100 form-control", required: true %>
+      <%= ge.collection_select :milestone_id, Milestone.all.order(:priority), :id, :description, {:prompt => 'Which milestone is this for?'}, class: "w-100 form-control", required: true %>
     </div>
   </div>  
   

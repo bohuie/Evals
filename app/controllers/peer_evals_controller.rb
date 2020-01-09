@@ -40,7 +40,7 @@ class PeerEvalsController < ApplicationController
 
   private
   def peer_eval_params
-    params.require(:peer_eval).permit(:milestone, :user_id, :goals, :quality, :effort, :considerate, :knowledge, :sharing, :strength, :weakness)
+    params.require(:peer_eval).permit(:milestone_id, :user_id, :goals, :quality, :effort, :considerate, :knowledge, :sharing, :strength, :weakness)
   end
 
   def load_peer_eval

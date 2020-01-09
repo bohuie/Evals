@@ -5,6 +5,7 @@ describe Feedback, type: :model do
   describe 'associations' do
     it { should belong_to(:team) }
     it { should belong_to(:creator).class_name(:User) }
+    it { should belong_to(:milestone) }
   end
 
   describe 'validations' do

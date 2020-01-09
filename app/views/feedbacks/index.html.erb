@@ -1,5 +1,5 @@
 <% if current_user.client%>
-<h1> Client Feedback You Created</h1> 
+<h1 class="w-100 text-center">Client Feedback You Created</h1> 
 
 <% @feedbacks.each do |fb| %>
   <p><b>Milestone</b>: <%= fb.milestone %>
@@ -24,7 +24,7 @@
 <% end %>
 
 <% elsif current_user.admin %>
-<h1> Client Feedbacks</h1> 
+<h1 class="w-100 text-center">Client Feedbacks</h1> 
 
 <% @feedbacks.each do |fb| %>
   <h2><b>Company</b>: <%= fb.creator.fullname %></h2>

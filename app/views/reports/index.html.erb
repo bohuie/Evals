@@ -18,8 +18,8 @@
         <%= collection_select :user, :id, User.all.order(:last_name), :id, :fullname, {:prompt => 'Select student name'}, required: true %>
       </p>
       <p>
-        Milestone: 
-        <%= select_tag( "milestone", options_for_select([['Requirements', 'Requirements'], ['Design', 'Design'], ['Final', 'Final']], '3'), {:prompt => 'Which milestone is this for?', required: true}) %>
+        Milestone:
+        <%= collection_select :milestone, :id, Milestone.all.order(:priority), :id, :description, {:prompt => 'Which milestone is this for?'}, required: true %>
       </p>
       <%= hidden_field_tag 'report', 'student' %>
       <p><%= submit_tag "Submit", class: 'btn btn-primary'%></p>
@@ -33,7 +33,7 @@
       </p>
       <p>
         Milestone: 
-        <%= select_tag( "milestone", options_for_select([['Requirements', 'Requirements'], ['Design', 'Design'], ['Final', 'Final']], '3'), {:prompt => 'Which milestone is this for?', required: true}) %>
+        <%= collection_select :milestone, :id, Milestone.all.order(:priority), :id, :description, {:prompt => 'Which milestone is this for?'}, required: true %>
       </p>
       <%= hidden_field_tag 'report', 'evals' %>
       <p><%= submit_tag "Submit", class: 'btn btn-primary'%></p>
@@ -47,7 +47,7 @@
       </p>
       <p>
         Milestone: 
-        <%= select_tag( "milestone", options_for_select([['Requirements', 'Requirements'], ['Design', 'Design'], ['Final', 'Final']], '3'), {:prompt => 'Which milestone is this for?', required: true}) %>
+        <%= collection_select :milestone, :id, Milestone.all.order(:priority), :id, :description, {:prompt => 'Which milestone is this for?'}, required: true %>
       </p>
       <%= hidden_field_tag 'report', 'groups' %>
       <p><%= submit_tag "Submit", class: 'btn btn-primary'%></p>

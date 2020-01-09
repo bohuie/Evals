@@ -24,6 +24,7 @@
     "webpack-dev-server": "^3.9.0"
   },
   "scripts": {
+    "cypress": "cypress open --project ./spec --browser chrome  --config trashAssetsBeforeRuns=true,baseUrl=http://localhost:3000",
     "db:reset": "rm db/*.sqlite3 || true && ./bin/rake db:create db:migrate db:seed",
     "db:seed": "./bin/rake db:seed",
     "lint": "eslint --fix app spec/cypress"

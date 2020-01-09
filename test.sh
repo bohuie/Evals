@@ -4,8 +4,7 @@ set -euo pipefail
 
 export TERM=xterm
 
-# bundle exec rake
-
+bundle exec rake
 
 rm -rf ./spec/cypress/reports/* || true
 

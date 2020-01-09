@@ -1,9 +1,9 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-sm-6">
-      <h1> Peer Evals You Created</h1>
+      <h1 class="w-100 text-center">Peer Evals You Created</h1>
       <% @peer_evals.each do |pe| %>
-        <p><b>Milestone</b>: <%= pe.milestone %> 
+        <p><b>Milestone</b>: <%= pe.milestone.description %> 
         <p><b>Student Under Evaluation</b>: <%= pe.user.fullname %> 
         <p><b>Scores</b>: 
         <ul>
@@ -20,9 +20,9 @@
       <% end %>
     </div>
     <div class="col-sm-6">
-      <h1> Peer Evals For You</h1>
+      <h1 class="w-100 text-center">Peer Evals For You</h1>
       <% @your_evals.each do |ye| %>
-        <p><b>Milestone</b>: <%= ye.milestone %> 
+        <p><b>Milestone</b>: <%= ye.milestone.id %> 
         <p><b>Scores</b>: 
         <ul>
           <li>Contribution to Group Goals: <%= ye.goals %> / 4
