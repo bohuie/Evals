@@ -1,5 +1,4 @@
 import { Given } from 'cypress-cucumber-preprocessor/steps';
-import promisify from 'cypress-promise';
 import urls from './urls';
 import { getUser, loginWithUsernameAndPassword } from './user';
 

@@ -15,5 +15,10 @@ Then('I should see a heading {string}', function (text) {
 });
 
 Then('I should be on the {string} page', function (page) {
-  cy.url().should('include', urls[page]);
+  cy.url().should('eq', `${Cypress.config('baseUrl')}${urls[page]}`);
+});
+
+// TODO: Implement this into tests.
+Then('I should see menu items {string}', function (items) {
+  const itemList = items.split(/( and )|(, )/);
 });

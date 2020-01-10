@@ -14,7 +14,7 @@ export function loginWithUsernameAndPassword(cy, username, password) {
   cy.url().should('include', urls.home);
 }
 
-export function getUser(cy, name) {
+export function getUser(cy, name, client = false) {
   let user;
 
   if (!(name in users)) {
@@ -31,6 +31,9 @@ export function getUser(cy, name) {
     cy.get('input[id=user_email]').type(username);
     cy.get('input[id=user_password]').type(`${password}`);
     cy.get('input[id=user_first_name]').type(`${firstName}`);
+    if (client) {
+      cy.get('input#user_client').check();
+    }
     cy.get('input[id=user_last_name]').type(`${lastName}{enter}`);
 
     cy.get('div.alert-success').contains('User successfully created').should('be.visible');
@@ -40,6 +43,7 @@ export function getUser(cy, name) {
       firstName,
       lastName,
       fullName,
+      client,
     };
 
     users[name] = user;
@@ -54,6 +58,11 @@ Given('User {string} exists', function (name) {
 
 Given('I am logged in as {string}', function (name) {
   const user = getUser(cy, name);
+  loginWithUsernameAndPassword(cy, user.username, user.password);
+});
+
+Given('I am logged in as client {string}', function (name) {
+  const user = getUser(cy, name, true);
   loginWithUsernameAndPassword(cy, user.username, user.password);
 });
 

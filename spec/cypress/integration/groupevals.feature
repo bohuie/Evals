@@ -1,11 +1,11 @@
 Feature: Group Evaluations
 
-  # Scenario: Can See Group Evaluation Page
-  #  Given I am logged in as "Eval Uator"
-  #   When I navigate to "my group evaluations"
-  #   Then I should be on the "my group evaluations" page
-  #    And I should see a heading "Group Evals You Created"
-  #    And I should see a heading "Group Evals For You"
+  Scenario: Can See Group Evaluation Page
+   Given I am logged in as "Eval Uator"
+    When I navigate to "my group evaluations"
+    Then I should be on the "my group evaluations" page
+     And I should see a heading "Group Evals You Created"
+     And I should see a heading "Group Evals For You"
 
   Scenario: Can See Group Evals I created
     Given User "Eval Uator" exists
