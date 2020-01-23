@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(version: 20200109003505) do
     t.text     "oeq3"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
-    t.integer  "milestone_id"
+    t.integer  "milestone_id",  null: false
   end
 
   create_table "group_evals", force: :cascade do |t|
@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(version: 20200109003505) do
     t.integer  "creator_id"
     t.string   "milestone_old"
     t.integer  "team_id"
-    t.integer  "milestone_id"
+    t.integer  "milestone_id",  null: false
   end
 
   create_table "milestones", force: :cascade do |t|
@@ -73,7 +73,7 @@ ActiveRecord::Schema.define(version: 20200109003505) do
     t.datetime "updated_at",    null: false
     t.integer  "user_id"
     t.integer  "creator_id"
-    t.integer  "milestone_id"
+    t.integer  "milestone_id",  null: false
   end
 
   create_table "teams", force: :cascade do |t|

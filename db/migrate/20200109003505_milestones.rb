@@ -18,8 +18,35 @@ class Milestones < ActiveRecord::Migration
     rename_column :group_evals, :milestone, :milestone_old
     rename_column :peer_evals, :milestone, :milestone_old
 
-    add_column :feedbacks, :milestone_id, :integer
-    add_column :group_evals, :milestone_id, :integer
-    add_column :peer_evals, :milestone_id, :integer
+    add_column :feedbacks, :milestone_id, :integer, :null => true
+    add_column :group_evals, :milestone_id, :integer, :null => true
+    add_column :peer_evals, :milestone_id, :integer, :null => true
+
+    add_foreign_key :milestones, :feedbacks, :null => true
+    add_foreign_key :milestones, :group_evals, :null => true
+    add_foreign_key :milestones, :peer_evals, :null => true
+
+    execute <<-SQL
+      UPDATE feedbacks set milestone_id = 0 where milestone_old = 'Requirements';
+      UPDATE feedbacks set milestone_id = 1 where milestone_old = 'Design';
+      UPDATE feedbacks set milestone_id = 2 where milestone_old = 'Final';
+    SQL
+
+    execute <<-SQL
+      UPDATE group_evals set milestone_id = 0 where milestone_old = 'Requirements';
+      UPDATE group_evals set milestone_id = 1 where milestone_old = 'Design';
+      UPDATE group_evals set milestone_id = 2 where milestone_old = 'Final';
+    SQL
+
+    execute <<-SQL
+    UPDATE peer_evals set milestone_id = 0 where milestone_old = 'Requirements';
+    UPDATE peer_evals set milestone_id = 1 where milestone_old = 'Design';
+    UPDATE peer_evals set milestone_id = 2 where milestone_old = 'Final';
+  SQL
+
+    change_column_null :feedbacks, :milestone_id, false
+    change_column_null :group_evals, :milestone_id, false
+    change_column_null :peer_evals, :milestone_id, false
+
   end
 end
