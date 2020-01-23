@@ -61,61 +61,63 @@ RUN set -ex \
   && ln -s /opt/yarn-v$YARN_VERSION/bin/yarnpkg /usr/local/bin/yarnpkg \
   && rm yarn-v$YARN_VERSION.tar.gz.asc yarn-v$YARN_VERSION.tar.gz
 
+# Note - This is here to run Cypress in Docker before deploy (if you want).
+
 # Install cypress dependencies
-RUN apt-get update && \
-  apt-get install --no-install-recommends -y \
-  libgtk2.0-0 \
-  libgtk-3-0 \
-  libnotify-dev \
-  libgconf-2-4 \
-  libnss3 \
-  libxss1 \
-  libasound2 \
-  libxtst6 \
-  xauth \
-  xvfb \
-  # install Chinese fonts
-  # this list was copied from https://github.com/jim3ma/docker-leanote
-  fonts-arphic-bkai00mp \
-  fonts-arphic-bsmi00lp \
-  fonts-arphic-gbsn00lp \
-  fonts-arphic-gkai00mp \
-  fonts-arphic-ukai \
-  fonts-arphic-uming \
-  ttf-wqy-zenhei \
-  ttf-wqy-microhei \
-  xfonts-wqy \
-  # clean up
-  && rm -rf /var/lib/apt/lists/*
+# RUN apt-get update && \
+#   apt-get install --no-install-recommends -y \
+#   libgtk2.0-0 \
+#   libgtk-3-0 \
+#   libnotify-dev \
+#   libgconf-2-4 \
+#   libnss3 \
+#   libxss1 \
+#   libasound2 \
+#   libxtst6 \
+#   xauth \
+#   xvfb \
+#   # install Chinese fonts
+#   # this list was copied from https://github.com/jim3ma/docker-leanote
+#   fonts-arphic-bkai00mp \
+#   fonts-arphic-bsmi00lp \
+#   fonts-arphic-gbsn00lp \
+#   fonts-arphic-gkai00mp \
+#   fonts-arphic-ukai \
+#   fonts-arphic-uming \
+#   ttf-wqy-zenhei \
+#   ttf-wqy-microhei \
+#   xfonts-wqy \
+#   # clean up
+#   && rm -rf /var/lib/apt/lists/*
 
-# install Chromebrowser
-RUN \
-  wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - && \
-  echo "deb http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google.list
-RUN apt-get update && \
-    apt-get install -y google-chrome-stable && \
-    rm -rf /var/lib/apt/lists/*
+# # install Chromebrowser
+# RUN \
+#   wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - && \
+#   echo "deb http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google.list
+# RUN apt-get update && \
+#     apt-get install -y google-chrome-stable && \
+#     rm -rf /var/lib/apt/lists/*
 
-# "fake" dbus address to prevent errors
-# https://github.com/SeleniumHQ/docker-selenium/issues/87
-ENV DBUS_SESSION_BUS_ADDRESS=/dev/null
+# # "fake" dbus address to prevent errors
+# # https://github.com/SeleniumHQ/docker-selenium/issues/87
+# ENV DBUS_SESSION_BUS_ADDRESS=/dev/null
 
-# Add zip utility - it comes in very handy
-RUN apt-get update && apt-get install -y zip && rm -rf /var/lib/apt/lists/*
+# # Add zip utility - it comes in very handy
+# RUN apt-get update && apt-get install -y zip && rm -rf /var/lib/apt/lists/*
 
-# install Firefox browser
-RUN wget --no-verbose -O /tmp/firefox.tar.bz2 https://download-installer.cdn.mozilla.net/pub/firefox/releases/$FIREFOX_VERSION/linux-x86_64/en-US/firefox-$FIREFOX_VERSION.tar.bz2 \
-  && tar -C /opt -xjf /tmp/firefox.tar.bz2 \
-  && rm /tmp/firefox.tar.bz2 \
-  && ln -fs /opt/firefox/firefox /usr/bin/firefox
+# # install Firefox browser
+# RUN wget --no-verbose -O /tmp/firefox.tar.bz2 https://download-installer.cdn.mozilla.net/pub/firefox/releases/$FIREFOX_VERSION/linux-x86_64/en-US/firefox-$FIREFOX_VERSION.tar.bz2 \
+#   && tar -C /opt -xjf /tmp/firefox.tar.bz2 \
+#   && rm /tmp/firefox.tar.bz2 \
+#   && ln -fs /opt/firefox/firefox /usr/bin/firefox
 
-# a few environment variables to make NPM installs easier
-# good colors for most applications
-ENV TERM xterm
-# avoid million NPM install messages
-ENV npm_config_loglevel warn
-# allow installing when the main user is root
-ENV npm_config_unsafe_perm true
+# # a few environment variables to make NPM installs easier
+# # good colors for most applications
+# ENV TERM xterm
+# # avoid million NPM install messages
+# ENV npm_config_loglevel warn
+# # allow installing when the main user is root
+# ENV npm_config_unsafe_perm true
 
 WORKDIR /app
 ENV RAILS_ENV=test
@@ -152,6 +154,7 @@ RUN SECRET_KEY_BASE=dummy bundle exec rake assets:precompile
 FROM ruby:2.6.5-alpine as build-alpine
 WORKDIR /app
 ENV RAILS_ENV=production
+ENV RACK_ENV=production
 ENV PORT=80
 ENV HOST=localhost
 COPY --from=builder /app .
