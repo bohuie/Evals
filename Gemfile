@@ -15,7 +15,7 @@ gem 'sqlite3', '~> 1.3.11'
 gem 'webpacker', '~> 4.x'
 
 group :production do
-  gem 'pg'
+  gem 'pg', '~> 0.15'
   gem 'rails_12factor'
   gem 'puma'
 end

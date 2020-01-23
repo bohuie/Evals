@@ -56,6 +56,10 @@ Given('User {string} exists', function (name) {
   getUser(cy, name);
 });
 
+Given('Client {string} exists', function (name) {
+  getUser(cy, name, true);
+});
+
 Given('I am logged in as {string}', function (name) {
   const user = getUser(cy, name);
   loginWithUsernameAndPassword(cy, user.username, user.password);

@@ -116,7 +116,7 @@ GEM
     nokogiri (1.10.5)
       mini_portile2 (~> 2.4.0)
     orm_adapter (0.5.0)
-    pg (1.1.4)
+    pg (0.21.0)
     puma (4.3.0)
       nio4r (~> 2.0)
     rack (1.6.11)
@@ -261,7 +261,7 @@ DEPENDENCIES
   devise (~> 4.7.1)
   factory_bot_rails
   jbuilder (~> 2.0)
-  pg
+  pg (~> 0.15)
   puma
   rails (= 4.2.11.1)
   rails_12factor

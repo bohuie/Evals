@@ -6,8 +6,7 @@
     "jquery": "^3.4.1",
     "popper.js": "^1.16.0",
     "regenerator-runtime": "^0.13.3",
-    "turbolinks": "^5.2.0",
-    "webpack": "^4.41.2"
+    "turbolinks": "^5.2.0"
   },
   "devDependencies": {
     "@rails/webpacker": "^4.2.0",
@@ -21,6 +20,7 @@
     "getenv": "^1.0.0",
     "uuid": "^3.3.3",
     "wait-on": "^3.3.0",
+    "webpack": "^4.41.2",
     "webpack-dev-server": "^3.9.0"
   },
   "scripts": {

@@ -33,8 +33,8 @@ Feature: Login
 
   Scenario: Client can see client feedback
    Given I am logged in as client "Cli Ent"
-    When I navigate to "client feedback"
-    Then I should be on the "client feedback" page
+    When I navigate to "my client feedback"
+    Then I should be on the "my client feedback" page
 
   Scenario: Client can create new client feedback
    Given I am logged in as client "Cli Ent"

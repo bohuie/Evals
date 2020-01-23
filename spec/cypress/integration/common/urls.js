@@ -5,7 +5,7 @@ export default {
   'create new group evaluation': '/group_evals/new',
   'create team': '/admin/team/new',
   'create new client feedback': '/feedbacks/new',
-  'client feedback': '/feedbacks',
+  'my client feedback': '/feedbacks',
   'teams': '/admin/team',
   'home': '/',
   'my peer evaluations': '/peer_evals',

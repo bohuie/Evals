@@ -21,6 +21,7 @@ When('I create a good group evaluation for {string} and milestone {string}', fun
 
 
 Then('I should see a good group evaluation I created for {string} and milestone {string}', function (teamName, milestone) {
+  // TODO: Verify the group evaluation.
   const team = getTeam(cy, teamName);
 
   cy.visit(urls['my group evaluations']);
