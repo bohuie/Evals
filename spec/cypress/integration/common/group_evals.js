@@ -26,4 +26,67 @@ Then('I should see a good group evaluation I created for {string} and milestone 
 
   cy.visit(urls['my group evaluations']);
 
+  cy
+    .get('h1')
+    .contains('Group Evals You Created')
+    .siblings('p')
+    .contains('Milestone')
+    .parent('p')
+    .should('contain', milestone);
+
+  cy
+    .get('h1')
+    .contains('Group Evals You Created')
+    .siblings('p')
+    .contains('Team Under Evaluation')
+    .parent('p')
+    .should('contain', teamName);
+
+  cy
+    .get('h1')
+    .contains('Group Evals You Created')
+    .siblings('p')
+    .contains('Presentation')
+    .parent('p')
+    .should('contain', '5');
+
+  cy
+    .get('h1')
+    .contains('Group Evals You Created')
+    .siblings('p')
+    .contains('Ability to Answer Questions')
+    .parent('p')
+    .should('contain', '5');
+
+  cy
+    .get('h1')
+    .contains('Group Evals You Created')
+    .siblings('p')
+    .contains('Quality of Contributions')
+    .parent('p')
+    .should('contain', '5');
+
+  cy
+    .get('h1')
+    .contains('Group Evals You Created')
+    .siblings('p')
+    .contains('Strengths')
+    .parent('p')
+    .should('contain', `Good team ${team.teamName}!`);
+
+  cy
+    .get('h1')
+    .contains('Group Evals You Created')
+    .siblings('p')
+    .contains('Areas of Improvement')
+    .parent('p')
+    .should('contain', `Not many ${team.teamName}!`);
+
+  cy
+    .get('h1')
+    .contains('Group Evals You Created')
+    .siblings('p')
+    .contains('Questions For Team')
+    .parent('p')
+    .should('contain', `${team.teamName} what do you think about Bob?`);
 });
