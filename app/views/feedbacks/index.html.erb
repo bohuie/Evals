@@ -2,7 +2,7 @@
 <h1 class="w-100 text-center">Client Feedback You Created</h1> 
 
 <% @feedbacks.each do |fb| %>
-  <p><b>Milestone</b>: <%= fb.milestone %>
+  <p><b>Milestone</b>: <%= fb.milestone.description %>
   <p><b>Team Under Evaluation</b>: <%= fb.team.name %> 
   <p><b>Project Expectations</b>: <%= fb.q1 %> 
   <p><b>Requirements Have Good Scope</b>: <%= fb.q2 %> 
@@ -28,7 +28,7 @@
 
 <% @feedbacks.each do |fb| %>
   <h2><b>Company</b>: <%= fb.creator.fullname %></h2>
-  <p><b>Milestone</b>: <%= fb.milestone %>
+  <p><b>Milestone</b>: <%= fb.milestone.description %>
   <p><b>Team Under Evaluation</b>: <%= fb.team.name %> 
   <p><b>Project Expectations</b>: <%= fb.q1 %> 
   <p><b>Requirements Have Good Scope</b>: <%= fb.q2 %> 
@@ -51,7 +51,7 @@
 <h1> Client Feedback For You</h1> 
 
 <% @your_feedbacks.each do |fb| %>
-  <p><b>Milestone</b>: <%= fb.milestone %>
+  <p><b>Milestone</b>: <%= fb.milestone.description %>
   <p><b>Team Under Evaluation</b>: <%= fb.team.name %> 
   <p><b>Project Expectations</b>: <%= fb.q1 %> 
   <p><b>Requirements Have Good Scope</b>: <%= fb.q2 %> 

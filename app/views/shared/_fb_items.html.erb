@@ -1,9 +1,9 @@
 <%= form_for (@feedback) do |fb| %>
 
   <div class="form-group row">
-    <%= fb.label :milestone, class: "col-sm-2 col-form-label text-right mt-auto mb-auto" %>
+    <%= fb.label :milestone_id, class: "col-sm-2 col-form-label text-right mt-auto mb-auto" %>
     <div class="col-sm-10 mt-auto mb-auto">
-      <%= fb.select :milestone, [['Design', 'Design'], ['Final', 'Final']], {:prompt => 'Which milestone is this for?'}, class: "w-100 form-control", required: true %>
+      <%= fb.collection_select :milestone_id, Milestone.all.order(:priority), :id, :description, {:prompt => 'Which milestone is this for?'}, class: "w-100 form-control", required: true %>
     </div>
   </div>
 

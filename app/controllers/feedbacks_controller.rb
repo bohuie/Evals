@@ -43,7 +43,7 @@ class FeedbacksController < ApplicationController
 
   private
   def feedback_params
-    params.require(:feedback).permit(:milestone, :team_id, :q1,:q2,:q3,:q4,:q5,:q6,:q7,:q8,:q9,:q10,:q11,:oeq1,:oeq2,:oeq3)
+    params.require(:feedback).permit(:milestone_id, :team_id, :q1,:q2,:q3,:q4,:q5,:q6,:q7,:q8,:q9,:q10,:q11,:oeq1,:oeq2,:oeq3)
   end
 
   def load_feedback

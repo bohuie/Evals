@@ -81,7 +81,7 @@
   <h1>Detailed Peer Evaluations for <%= @report.user.fullname %> </h1>
 
   <% @report.peer_evals.each do |pe| %>
-    <p><b>Milestone</b>: <%= pe.milestone %> 
+    <p><b>Milestone</b>: <%= pe.milestone.description %> 
     <p><b>Created by</b>: <%= pe.creator.fullname %> <%= link_to '(Show user)', user_path(pe.creator_id) %>
     <ul>
       <li>Contribution to Group Goals: <%= pe.goals %> / 4
@@ -99,7 +99,7 @@
   <h1>Detailed Peer Evaluations by <%= @report.user.fullname %> </h1>
 
   <% @report.peer_evals.each do |pe| %>
-    <p><b>Milestone</b>: <%= pe.milestone %> 
+    <p><b>Milestone</b>: <%= pe.milestone.description %> 
     <p><b>Created for</b>: <%= pe.user.fullname %> <%= link_to '(Show user)', user_path(pe.user_id) %>
     <ul>
       <li>Contribution to Group Goals: <%= pe.goals %> / 4
@@ -117,7 +117,7 @@
  <h1>Detailed Group Evaluations by <%= @report.user.fullname %> </h1>
 
   <% @report.group_evals.each do |ge| %>
-    <p><b>Milestone</b>: <%= ge.milestone %> 
+    <p><b>Milestone</b>: <%= ge.milestone.description %> 
     <p><b>Created for</b>: <%= ge.team.name %> <%= link_to '(Show team)', team_path(ge.team_id) %>
     <ul>
       <li>Presentation: <%= ge.presentation %> / 4
@@ -131,7 +131,7 @@
 <% elsif @report_type == 'groups' and @report and @report.group.present? and @report.group_evals.present? %>
   <h1>Detailed Group Evaluations for <%= @report.group.name %> </h1>
   <% @report.group_evals.each do |ge| %>
-    <p><b>Milestone</b>: <%= ge.milestone %> 
+    <p><b>Milestone</b>: <%= ge.milestone.description %> 
     <p><b>Created by</b>: <%= ge.creator.fullname %> <%= link_to '(Show user)', user_path(ge.creator_id) %>
     <ul>
       <li>Presentation: <%= ge.presentation %> / 4
