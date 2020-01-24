@@ -19,7 +19,7 @@
       </p>
       <p>
         Milestone:
-        <%= collection_select :milestone, :id, Milestone.all.order(:priority), :id, :description, {:prompt => 'Which milestone is this for?'}, required: true %>
+        <%= collection_select :milestones, :id, Milestone.all.order(:priority), :id, :description, {:prompt => 'Which milestone is this for?'}, required: true %>
       </p>
       <%= hidden_field_tag 'report', 'student' %>
       <p><%= submit_tag "Submit", class: 'btn btn-primary'%></p>
@@ -33,7 +33,7 @@
       </p>
       <p>
         Milestone: 
-        <%= collection_select :milestone, :id, Milestone.all.order(:priority), :id, :description, {:prompt => 'Which milestone is this for?'}, required: true %>
+        <%= collection_select :milestones, :id, Milestone.all.order(:priority), :id, :description, {:prompt => 'Which milestone is this for?'}, required: true %>
       </p>
       <%= hidden_field_tag 'report', 'evals' %>
       <p><%= submit_tag "Submit", class: 'btn btn-primary'%></p>
@@ -47,7 +47,7 @@
       </p>
       <p>
         Milestone: 
-        <%= collection_select :milestone, :id, Milestone.all.order(:priority), :id, :description, {:prompt => 'Which milestone is this for?'}, required: true %>
+        <%= collection_select :milestones, :id, Milestone.all.order(:priority), :id, :description, {:prompt => 'Which milestone is this for?'}, required: true %>
       </p>
       <%= hidden_field_tag 'report', 'groups' %>
       <p><%= submit_tag "Submit", class: 'btn btn-primary'%></p>
