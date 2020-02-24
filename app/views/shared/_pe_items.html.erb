@@ -10,7 +10,7 @@
   <div class="form-group row">
     <%= pe.label :student_under_evaluation, class: "col-sm-2 col-form-label text-right mt-auto mb-auto" %>
     <div class="col-sm-10 mt-auto mb-auto">
-        <%= pe.collection_select :user_id, User.all, :id, :fullname, {:prompt => 'Who are you evaluating?'}, class: "w-100 form-control", required: true %>
+        <%= pe.collection_select :user_id, User.where(client: false).where(admin: false).order(:first_name, :last_name), :id, :fullname, {:prompt => 'Who are you evaluating?'}, class: "w-100 form-control", required: true %>
     </div>
   </div>
 

@@ -3,8 +3,8 @@ class GroupEvalsController < ApplicationController
   before_filter :load_group_eval, only: [:show, :edit, :update]
 
   def index
-    @group_evals = GroupEval.where(:creator_id => current_user.id)
-    @your_group_evals = GroupEval.where(:team_id => current_user.team_id)
+    @group_evals = GroupEval.joins(:milestone).joins(:team).where(:creator_id => current_user.id).order("milestones.priority, teams.name")
+    @your_group_evals = GroupEval.joins(:milestone).joins(:team).where(:team_id => current_user.team_id).order("milestones.priority, teams.name")
   end
 
   def new

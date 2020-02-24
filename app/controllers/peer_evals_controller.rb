@@ -3,8 +3,8 @@ class PeerEvalsController < ApplicationController
   before_filter :load_peer_eval, only: [:show, :edit, :update]
 
   def index
-    @peer_evals = PeerEval.where(:creator_id => current_user.id)
-    @your_evals = PeerEval.where(:user_id => current_user.id)
+    @peer_evals = PeerEval.joins(:milestone).joins(:user).where(:creator_id => current_user.id).order("milestones.priority, users.first_name, users.last_name")
+    @your_evals = PeerEval.joins(:milestone).joins(:user).where(:user_id => current_user.id).order("milestones.priority, users.first_name, users.last_name")
   end
 
   def new

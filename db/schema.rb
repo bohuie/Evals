@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200109003505) do
+ActiveRecord::Schema.define(version: 20200224193515) do
 
   create_table "feedbacks", force: :cascade do |t|
     t.string   "company"
@@ -99,7 +99,7 @@ ActiveRecord::Schema.define(version: 20200109003505) do
     t.datetime "updated_at"
     t.boolean  "admin",                  default: false, null: false
     t.integer  "team_id"
-    t.boolean  "client"
+    t.boolean  "client",                 default: false, null: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
