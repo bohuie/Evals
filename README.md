@@ -13,7 +13,6 @@ Run Cypress tests by: `yarn --color=always cypress run --project ./spec --browse
 
 Open the interactive Cypress runner with: `yarn --color=always cypress open --project ./spec  --config trashAssetsBeforeRuns=true,baseUrl=http://localhost:3000`
 
-
 = Docker Image
 
 You need to setup `Docker` https://www.docker.com/ on your system and then run:
@@ -22,4 +21,7 @@ You need to setup `Docker` https://www.docker.com/ on your system and then run:
 
 = Deployment
 
-- This is deployed to Heroku using Docker.
+- This is deployed to Heroku using Docker.  The container must be called web.
+
+`heroku container:push -a <APP_NAME> web`
+`heroku container:release -a <APP_NAME> web`
