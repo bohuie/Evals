@@ -1,0 +1,42 @@
+{
+  "license": "UNLICENSED",
+  "dependencies": {
+    "bootstrap": "^4.4.1",
+    "core-js": "^3.4.5",
+    "jquery": "^3.4.1",
+    "popper.js": "^1.16.0",
+    "regenerator-runtime": "^0.13.3",
+    "turbolinks": "^5.2.0"
+  },
+  "devDependencies": {
+    "@rails/webpacker": "^4.2.0",
+    "bootswatch": "^4.4.1",
+    "cucumber-html-reporter": "^5.0.2",
+    "cypress": "^3.7.0",
+    "cypress-cucumber-preprocessor": "^1.18.0",
+    "eslint": "^6.7.2",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-cypress": "^2.7.0",
+    "eslint-plugin-import": "^2.18.2",
+    "getenv": "^1.0.0",
+    "uuid": "^3.3.3",
+    "wait-on": "^3.3.0",
+    "webpack": "^4.41.2",
+    "webpack-dev-server": "^3.9.0"
+  },
+  "scripts": {
+    "cypress-dev": "cypress open --project ./spec --browser chrome  --config trashAssetsBeforeRuns=true,baseUrl=http://localhost:3000",
+    "db:reset": "rm db/*.sqlite3 || true && ./bin/rake db:create db:migrate db:seed",
+    "db:seed": "./bin/rake db:seed",
+    "lint": "eslint --fix app spec/cypress"
+  },
+  "cypress-cucumber-preprocessor": {
+    "nonGlobalStepDefinitions": true,
+    "cucumberJson": {
+      "generate": true,
+      "outputFolder": "cypress/reports/cucumber-json",
+      "filePrefix": "",
+      "fileSuffix": ".cucumber"
+    }
+  }
+}

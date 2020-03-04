@@ -1,0 +1,31 @@
+{
+    "env": {
+        "browser": true,
+        "es6": true
+    },
+    "extends": [
+        "airbnb-base",
+        "plugin:cypress/recommended"
+    ],
+    "globals": {
+        "Atomics": "readonly",
+        "SharedArrayBuffer": "readonly"
+    },
+    "parserOptions": {
+        "ecmaVersion": 2018,
+        "sourceType": "module"
+    },
+    "rules": {
+      "func-names": "off",
+      "prefer-arrow-callback": "off"
+    },
+    "overrides": [
+        {
+          "files": ["app/**/*.js", "lib/*.js"],
+          "excludedFiles": "*.test.js",
+          "rules": {
+            "quotes": ["error", "single"]
+          }
+        }
+      ]
+}

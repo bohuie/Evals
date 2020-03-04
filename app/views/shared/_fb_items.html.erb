@@ -1,48 +1,123 @@
 <%= form_for (@feedback) do |fb| %>
-  <p><%= fb.label :milestone %>:   
-  <%= fb.select :milestone, [['Design', 'Design'], ['Final', 'Final']], {:prompt => 'Which milestone is this for?'} %>
 
-  <p><%= fb.label :team_under_evaluation %>: 
-  <%= fb.collection_select :team_id, Team.all, :id, :name, {:prompt => 'Which team are you evaluating?'} %>
+  <div class="form-group row">
+    <%= fb.label :milestone_id, class: "col-sm-2 col-form-label text-right mt-auto mb-auto" %>
+    <div class="col-sm-10 mt-auto mb-auto">
+      <%= fb.collection_select :milestone_id, Milestone.all.order(:priority), :id, :description, {:prompt => 'Which milestone is this for?'}, class: "w-100 form-control", required: true %>
+    </div>
+  </div>
 
-  <p>&nbsp; </p>
-  <h3>Please indicate your level of agreement with each of the following statements by choosing the appropriate number.</h3>
-  <p>&nbsp; </p>
+  <div class="form-group row">
+    <%= fb.label :team_under_evaluation, class: "col-sm-2 col-form-label text-right mt-auto mb-auto" %>
+    <div class="col-sm-10 mt-auto mb-auto">
+      <%= fb.collection_select :team_id, Team.all, :id, :name, {:prompt => 'Which team are you evaluating?'}, class: "w-100 form-control", required: true %>
+    </div>
+  </div>
 
-  <p><%= fb.label "Q1: Project expectations have been clearly communicated to the students." %>:       
-  <%= fb.select :q1, [['5 (Strong agree)', 5], ['4 (Agree)', 4], ['3 (Neutral)', 3], ['2 (Disagree)', 2], ['1 (Strongly Disagree)', 1]], {:prompt => 'Assign a score...'} %>  
-  <p><%= fb.label "Q2: The project requirements do not demand too much or too little work." %>: 
-  <%= fb.select :q2, [['5 (Strong agree)', 5], ['4 (Agree)', 4], ['3 (Neutral)', 3], ['2 (Disagree)', 2], ['1 (Strongly Disagree)', 1]], {:prompt => 'Assign a score...'} %>  
-  <p><%= fb.label "Q3: You are happy with the quantity and quality of work based on what you have seen the students produce." %>:       
-  <%= fb.select :q3, [['5 (Strong agree)', 5], ['4 (Agree)', 4], ['3 (Neutral)', 3], ['2 (Disagree)', 2], ['1 (Strongly Disagree)', 1]], {:prompt => 'Assign a score...'} %>  
-  <p><%= fb.label "Q4: You are confident that the project will be completed on time and with high quality in April." %>:       
-  <%= fb.select :q4, [['5 (Strong agree)', 5], ['4 (Agree)', 4], ['3 (Neutral)', 3], ['2 (Disagree)', 2], ['1 (Strongly Disagree)', 1]], {:prompt => 'Assign a score...'} %>  
-  <p><%= fb.label "Q5: All the students in the group work well together and you would be happy to hire all of them as future employees." %>:  
-  <%= fb.select :q5, [['5 (Strong agree)', 5], ['4 (Agree)', 4], ['3 (Neutral)', 3], ['2 (Disagree)', 2], ['1 (Strongly Disagree)', 1]], {:prompt => 'Assign a score...'} %>  
+  <h3>Please indicate your level of agreement with each of the following statements by choosing the appropriate number:</h3>
 
-  <p><%= fb.label "Q6: The students treat you with respect and courteousness." %>:  
-  <%= fb.select :q6, [['5 (Strong agree)', 5], ['4 (Agree)', 4], ['3 (Neutral)', 3], ['2 (Disagree)', 2], ['1 (Strongly Disagree)', 1]], {:prompt => 'Assign a score...'} %>  
-  <p><%= fb.label "Q7: The students are doing what is expected of them." %>:  
-  <%= fb.select :q7, [['5 (Strong agree)', 5], ['4 (Agree)', 4], ['3 (Neutral)', 3], ['2 (Disagree)', 2], ['1 (Strongly Disagree)', 1]], {:prompt => 'Assign a score...'} %>  
-  <p><%= fb.label "Q8: The students keep you up-to-date with their progress regularly." %>:  
-  <%= fb.select :q8, [['5 (Strong agree)', 5], ['4 (Agree)', 4], ['3 (Neutral)', 3], ['2 (Disagree)', 2], ['1 (Strongly Disagree)', 1]], {:prompt => 'Assign a score...'} %>  
-  <p><%= fb.label "Q9: The students follow through with what they say they would do." %>:  
-  <%= fb.select :q9, [['5 (Strong agree)', 5], ['4 (Agree)', 4], ['3 (Neutral)', 3], ['2 (Disagree)', 2], ['1 (Strongly Disagree)', 1]], {:prompt => 'Assign a score...'} %>  
-  <p><%= fb.label "Q10: When the students have questions or concerns, they are raised and communicated clearly with you." %>:  
-  <%= fb.select :q10, [['5 (Strong agree)', 5], ['4 (Agree)', 4], ['3 (Neutral)', 3], ['2 (Disagree)', 2], ['1 (Strongly Disagree)', 1]], {:prompt => 'Assign a score...'} %>  
-  <p><%= fb.label "Q11: The students have been proactive in addressing your concerns." %>:  
-  <%= fb.select :q11, [['5 (Strong agree)', 5], ['4 (Agree)', 4], ['3 (Neutral)', 3], ['2 (Disagree)', 2], ['1 (Strongly Disagree)', 1]], {:prompt => 'Assign a score...'} %>  
+  <div class="form-group row">
+    <%= fb.label "Q1: Project expectations have been clearly communicated to the students.", class: "col-sm-8 col-form-label text-right mt-auto mb-auto" %>
+    <div class="col-sm-4 col-form-label mb-auto">
+      <%= fb.select :q1, [['5 (Strong agree)', 5], ['4 (Agree)', 4], ['3 (Neutral)', 3], ['2 (Disagree)', 2], ['1 (Strongly Disagree)', 1]], {:prompt => 'Assign a score...'}, class: "w-100 form-control", required: true %>
+    </div>
+  </div>
 
-  <p>&nbsp; </p>
+  <div class="form-group row">
+    <%= fb.label "Q2: The project requirements do not demand too much or too little work.", class: "col-sm-8 col-form-label text-right mt-auto mb-auto" %>
+    <div class="col-sm-4 col-form-label mb-auto">
+      <%= fb.select :q2, [['5 (Strong agree)', 5], ['4 (Agree)', 4], ['3 (Neutral)', 3], ['2 (Disagree)', 2], ['1 (Strongly Disagree)', 1]], {:prompt => 'Assign a score...'}, class: "w-100 form-control", required: true %>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <%= fb.label "Q3: You are happy with the quantity and quality of work based on what you have seen the students produce.", class: "col-sm-8 col-form-label text-right mt-auto mb-auto" %>
+    <div class="col-sm-4 col-form-label mb-auto">
+      <%= fb.select :q3, [['5 (Strong agree)', 5], ['4 (Agree)', 4], ['3 (Neutral)', 3], ['2 (Disagree)', 2], ['1 (Strongly Disagree)', 1]], {:prompt => 'Assign a score...'}, class: "w-100 form-control", required: true %>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <%= fb.label "Q4: You are confident that the project will be completed on time and with high quality in April.", class: "col-sm-8 col-form-label text-right mt-auto mb-auto" %>
+    <div class="col-sm-4 col-form-label mb-auto">
+      <%= fb.select :q4, [['5 (Strong agree)', 5], ['4 (Agree)', 4], ['3 (Neutral)', 3], ['2 (Disagree)', 2], ['1 (Strongly Disagree)', 1]], {:prompt => 'Assign a score...'}, class: "w-100 form-control", required: true %>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <%= fb.label "Q5: All the students in the group work well together and you would be happy to hire all of them as future employees.", class: "col-sm-8 col-form-label text-right mt-auto mb-auto" %>
+    <div class="col-sm-4 col-form-label mb-auto">
+      <%= fb.select :q5, [['5 (Strong agree)', 5], ['4 (Agree)', 4], ['3 (Neutral)', 3], ['2 (Disagree)', 2], ['1 (Strongly Disagree)', 1]], {:prompt => 'Assign a score...'}, class: "w-100 form-control", required: true %>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <%= fb.label "Q6: The students treat you with respect and courteousness.", class: "col-sm-8 col-form-label text-right mt-auto mb-auto" %>
+    <div class="col-sm-4 col-form-label mb-auto">
+      <%= fb.select :q6, [['5 (Strong agree)', 5], ['4 (Agree)', 4], ['3 (Neutral)', 3], ['2 (Disagree)', 2], ['1 (Strongly Disagree)', 1]], {:prompt => 'Assign a score...'}, class: "w-100 form-control", required: true %>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <%= fb.label "Q7: The students are doing what is expected of them.", class: "col-sm-8 col-form-label text-right mt-auto mb-auto" %>
+    <div class="col-sm-4 col-form-label mb-auto">
+      <%= fb.select :q7, [['5 (Strong agree)', 5], ['4 (Agree)', 4], ['3 (Neutral)', 3], ['2 (Disagree)', 2], ['1 (Strongly Disagree)', 1]], {:prompt => 'Assign a score...'}, class: "w-100 form-control", required: true %>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <%= fb.label "Q8: The students keep you up-to-date with their progress regularly.", class: "col-sm-8 col-form-label text-right mt-auto mb-auto" %>
+    <div class="col-sm-4 col-form-label mb-auto">
+      <%= fb.select :q8, [['5 (Strong agree)', 5], ['4 (Agree)', 4], ['3 (Neutral)', 3], ['2 (Disagree)', 2], ['1 (Strongly Disagree)', 1]], {:prompt => 'Assign a score...'}, class: "w-100 form-control", required: true %>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <%= fb.label "Q9: The students follow through with what they say they would do.", class: "col-sm-8 col-form-label text-right mt-auto mb-auto" %>
+    <div class="col-sm-4 col-form-label mb-auto">
+      <%= fb.select :q9, [['5 (Strong agree)', 5], ['4 (Agree)', 4], ['3 (Neutral)', 3], ['2 (Disagree)', 2], ['1 (Strongly Disagree)', 1]], {:prompt => 'Assign a score...'}, class: "w-100 form-control", required: true %>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <%= fb.label "Q10: When the students have questions or concerns, they are raised and communicated clearly with you.", class: "col-sm-8 col-form-label text-right mt-auto mb-auto" %>
+    <div class="col-sm-4 col-form-label mb-auto">
+      <%= fb.select :q10, [['5 (Strong agree)', 5], ['4 (Agree)', 4], ['3 (Neutral)', 3], ['2 (Disagree)', 2], ['1 (Strongly Disagree)', 1]], {:prompt => 'Assign a score...'}, class: "w-100 form-control", required: true %>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <%= fb.label "Q11: The students have been proactive in addressing your concerns.", class: "col-sm-8 col-form-label text-right mt-auto mb-auto" %>
+    <div class="col-sm-4 col-form-label mb-auto">
+      <%= fb.select :q11, [['5 (Strong agree)', 5], ['4 (Agree)', 4], ['3 (Neutral)', 3], ['2 (Disagree)', 2], ['1 (Strongly Disagree)', 1]], {:prompt => 'Assign a score...'}, class: "w-100 form-control", required: true %>
+    </div>
+  </div>
+
   <h3>Please answer the following questions with as much context as possible.</h3>
-  <p>&nbsp; </p>
 
-  <p><%= fb.label "OEQ1: What are the strengths the students have displayed? If there are specific students who demonstrated outstanding qualities, please list them individually." %>
-  <%= fb.text_area  :oeq1, size: "100x10" %>  
-  <p><%= fb.label "OEQ2: How could the students improve their service?" %>
-  <%= fb.text_area  :oeq2, size: "100x10" %>  
-  <p><%= fb.label "OEQ3: Is there anything that you would like to see the students stop doing?" %>
-  <%= fb.text_area  :oeq3, size: "100x10" %>  
+   <div class="form-group row">
+    <%= fb.label "OEQ1: What are the strengths the students have displayed? If there are specific students who demonstrated outstanding qualities, please list them individually.", class: "col-sm-4 col-form-label text-right mt-auto mb-auto" %>
+    <div class="col-sm-8 mt-auto mb-auto">
+        <%= fb.text_area :oeq1, class: "w-100 form-control", required: true, rows: 8 %>
+    </div>
+   </div>
 
-<p><%= fb.submit "Submit", class: 'btn btn-primary'%>
+   <div class="form-group row">
+    <%= fb.label "OEQ2: How could the students improve their service?", class: "col-sm-4 col-form-label text-right mt-auto mb-auto" %>
+    <div class="col-sm-8 mt-auto mb-auto">
+        <%= fb.text_area :oeq2, class: "w-100 form-control", required: true, rows: 8 %>
+    </div>
+   </div>
+
+   <div class="form-group row">
+    <%= fb.label "OEQ3: Is there anything that you would like to see the students stop doing?", class: "col-sm-4 col-form-label text-right mt-auto mb-auto" %>
+    <div class="col-sm-8 mt-auto mb-auto">
+        <%= fb.text_area :oeq3, class: "w-100 form-control", required: true, rows: 8 %>
+    </div>
+   </div>
+
+   <div class="w-100 mb-sm-5">
+      <%= fb.submit "Submit", class: "w-100 form-control" %>
+   </div>
+   
 <% end %>
