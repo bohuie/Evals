@@ -1,0 +1,16 @@
+#!/usr/bin/env node
+
+var reporter = require('cucumber-html-reporter');
+ 
+var options = {
+    theme: 'bootstrap',
+    jsonDir: 'spec/cypress/reports/cucumber-json/',
+    output: `spec/cypress/reports/${process.env["BROWSER"]}.html`,
+    reportSuiteAsScenarios: true,
+    scenarioTimestamp: true,
+    ignoreBadJsonFile: true,
+    screenshotsDirectory: 'spec/cypress/screenshots/',
+    storeScreenshots: true
+};
+ 
+reporter.generate(options);

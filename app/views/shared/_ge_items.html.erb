@@ -1,21 +1,62 @@
 <%= form_for (@group_eval) do |ge| %>
-  <p><%= ge.label :milestone %>:   
-  <%= ge.select :milestone, [['Requirements', 'Requirements'], ['Design', 'Design'], ['Final', 'Final']], {:prompt => 'Which milestone is this for?'} %>
+  <div class="form-group row">
+    <%= ge.label :milestone, class: "col-sm-2 col-form-label text-right mt-auto mb-auto" %>
+    <div class="col-sm-10 mt-auto mb-auto">
+      <%= ge.collection_select :milestone_id, Milestone.all.order(:priority), :id, :description, {:prompt => 'Which milestone is this for?'}, class: "w-100 form-control", required: true %>
+    </div>
+  </div>  
+  
 
-  <p><%= ge.label :team_under_evaluation %>: 
-  <%= ge.collection_select :team_id, Team.all, :id, :name, {:prompt => 'Which team are you evaluating?'} %>
+  <div class="form-group row">
+    <%= ge.label :team_under_evaluation, class: "col-sm-2 col-form-label text-right mt-auto mb-auto" %>
+    <div class="col-sm-10 mt-auto mb-auto">
+      <%= ge.collection_select :team_id, Team.all, :id, :name, {:prompt => 'Which team are you evaluating?'}, class: "w-100 form-control", required: true %>
+    </div>
+  </div>    
 
-  <p><%= ge.label :presentation %>:       
-  <%= ge.select :presentation, [['5 (very good)', 5], ['4 (good)', 4], ['3 (satisfactory)', 3], ['2 (poor)', 2], ['1 (very poor)', 1]], {:prompt => 'Assign a score...'} %>  
-  <p><%= ge.label :ability_to_answer_questions %>:       
-  <%= ge.select :answering, [['5 (very good)', 5], ['4 (good)', 4], ['3 (satisfactory)', 3], ['2 (poor)', 2], ['1 (very poor)', 1]], {:prompt => 'Assign a score...'} %>  
-  <p><%= ge.label :quality_of_contributions %>:       
-  <%= ge.select :contribution , [['5 (very good)', 5], ['4 (good)', 4], ['3 (satisfactory)', 3], ['2 (poor)', 2], ['1 (very poor)', 1]], {:prompt => 'Assign a score...'} %>  
+  <div class="form-group row">
+    <%= ge.label :presentation, class: "col-sm-2 col-form-label text-right mt-auto mb-auto" %>
+    <div class="col-sm-10 mt-auto mb-auto">
+      <%= ge.select :presentation, [['5 (very good)', 5], ['4 (good)', 4], ['3 (satisfactory)', 3], ['2 (poor)', 2], ['1 (very poor)', 1]], {:prompt => 'Assign a score...'}, class: "w-100 form-control", required: true %>
+    </div>
+  </div>    
 
-  <p><%= ge.label :questions_for_the_team %>:  <%= ge.text_area  :questions, size: "60x10" %>  
+  <div class="form-group row">
+    <%= ge.label :ability_to_answer_questions, class: "col-sm-2 col-form-label text-right mt-auto mb-auto" %>
+    <div class="col-sm-10 mt-auto mb-auto">
+      <%= ge.select :answering, [['5 (very good)', 5], ['4 (good)', 4], ['3 (satisfactory)', 3], ['2 (poor)', 2], ['1 (very poor)', 1]], {:prompt => 'Assign a score...'}, class: "w-100 form-control", required: true %>  
+    </div>
+  </div>    
 
-  <p><%= ge.label :strengths %>:  <%= ge.text_area  :strength, size: "60x10" %>  
-  <p><%= ge.label :areas_of_improvement %>: <%= ge.text_area  :weakness, size: "60x10" %>  
+  <div class="form-group row">
+    <%= ge.label :quality_of_contributions, class: "col-sm-2 col-form-label text-right mt-auto mb-auto" %>
+    <div class="col-sm-10 mt-auto mb-auto">
+      <%= ge.select :contribution , [['5 (very good)', 5], ['4 (good)', 4], ['3 (satisfactory)', 3], ['2 (poor)', 2], ['1 (very poor)', 1]], {:prompt => 'Assign a score...'}, class: "w-100 form-control", required: true %>  
+    </div>
+  </div>    
 
-<p><%= ge.submit "Submit", class: 'btn btn-primary'%>
+   <div class="form-group row">
+      <%= ge.label :questions_for_the_team, class: "col-sm-2 col-form-label text-right mt-auto mb-auto" %>
+      <div class="col-sm-10 mt-auto mb-auto">
+          <%= ge.text_area :questions, class: "w-100 form-control", required: true, rows: 8 %>
+      </div>
+   </div>
+
+   <div class="form-group row">
+      <%= ge.label :strengths, class: "col-sm-2 col-form-label text-right mt-auto mb-auto" %>
+      <div class="col-sm-10 mt-auto mb-auto">
+          <%= ge.text_area :strength, class: "w-100 form-control", required: true, rows: 8 %>
+      </div>
+   </div>
+
+    <div class="form-group row">
+      <%= ge.label :areas_of_improvement, class: "col-sm-2 col-form-label text-right mt-auto mb-auto" %>
+      <div class="col-sm-10 mt-auto mb-auto">
+          <%= ge.text_area :weakness, class: "w-100 form-control", required: true, rows: 8 %>
+      </div>
+   </div>
+
+   <div class="w-100 mb-sm-5">
+      <%= ge.submit "Submit", class: "w-100 form-control" %>
+   </div>
 <% end %>

@@ -1,7 +1,7 @@
 RailsAdmin.config do |config|
 
   config.authorize_with do
-    redirect_to main_app.root_path unless current_user.admin == true
+    redirect_to main_app.root_path unless current_user.present? && current_user.admin == true
   end
   ### Popular gems integration
 
@@ -36,5 +36,11 @@ RailsAdmin.config do |config|
     ## With an audit adapter, you can add:
     # history_index
     # history_show
+  end
+
+  config.model 'User' do
+    object_label_method do
+      :fullname
+    end
   end
 end

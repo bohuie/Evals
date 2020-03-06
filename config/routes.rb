@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   get 'welcome/index'
 
-  devise_for :users
+  devise_for :users, :controllers => { registrations: 'registrations' }
 
   get '/users' => 'users#index'
 
@@ -10,10 +10,6 @@ Rails.application.routes.draw do
 
   get '/users/:id/edit' => 'users#edit', as: :edit_user
   patch '/users/:id' => 'users#update'
-
-
-  get '/students' => 'students#index'
-
 
   get '/peer_evals' => 'peer_evals#index'
   get '/peer_evals/new' => 'peer_evals#new'

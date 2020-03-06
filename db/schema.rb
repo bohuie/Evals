@@ -11,13 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151203213420) do
+ActiveRecord::Schema.define(version: 20200224193515) do
 
   create_table "feedbacks", force: :cascade do |t|
     t.string   "company"
     t.integer  "creator_id"
     t.integer  "team_id"
-    t.string   "milestone"
+    t.string   "milestone_old"
     t.integer  "q1"
     t.integer  "q2"
     t.integer  "q3"
@@ -32,8 +32,9 @@ ActiveRecord::Schema.define(version: 20151203213420) do
     t.text     "oeq1"
     t.text     "oeq2"
     t.text     "oeq3"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "milestone_id",  null: false
   end
 
   create_table "group_evals", force: :cascade do |t|
@@ -43,15 +44,23 @@ ActiveRecord::Schema.define(version: 20151203213420) do
     t.integer  "contribution"
     t.text     "strength"
     t.text     "weakness"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
     t.integer  "creator_id"
-    t.string   "milestone"
+    t.string   "milestone_old"
     t.integer  "team_id"
+    t.integer  "milestone_id",  null: false
+  end
+
+  create_table "milestones", force: :cascade do |t|
+    t.string   "description"
+    t.integer  "priority",    default: 0
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
   end
 
   create_table "peer_evals", force: :cascade do |t|
-    t.string   "milestone"
+    t.string   "milestone_old"
     t.integer  "goals"
     t.integer  "quality"
     t.integer  "effort"
@@ -60,17 +69,11 @@ ActiveRecord::Schema.define(version: 20151203213420) do
     t.integer  "sharing"
     t.string   "strength"
     t.string   "weakness"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
     t.integer  "user_id"
     t.integer  "creator_id"
-  end
-
-  create_table "students", force: :cascade do |t|
-    t.string   "last_name"
-    t.string   "first_name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "milestone_id",  null: false
   end
 
   create_table "teams", force: :cascade do |t|
@@ -96,7 +99,7 @@ ActiveRecord::Schema.define(version: 20151203213420) do
     t.datetime "updated_at"
     t.boolean  "admin",                  default: false, null: false
     t.integer  "team_id"
-    t.boolean  "client"
+    t.boolean  "client",                 default: false, null: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
